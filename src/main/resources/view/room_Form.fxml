@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="827.0" prefWidth="1032.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.d24_hostel_managment_system.Controller.RoomFormController">
+
+    <children>
+        <Label layoutX="428.0" layoutY="27.0" text="Rooms">
+            <font>
+                <Font name="Arial Black" size="41.0" />
+            </font>
+        </Label>
+      <Group layoutX="86.0" layoutY="268.0">
+         <children>
+            <Group layoutY="-21.0">
+               <children>
+                    <Group>
+                        <children>
+                            <Label text="Room Type Id :">
+                                <font>
+                                    <Font name="System Bold" size="24.0" />
+                                </font>
+                            </Label>
+                            <Label layoutX="473.0" layoutY="1.0" text="Room Type :">
+                                <font>
+                                    <Font name="System Bold" size="24.0" />
+                                </font>
+                            </Label>
+                            <Label layoutY="76.0" text="Key Money     :">
+                                <font>
+                                    <Font name="System Bold" size="24.0" />
+                                </font>
+                            </Label>
+                            <Label layoutX="473.0" layoutY="76.0" text="Rooms Qty  :">
+                                <font>
+                                    <Font name="System Bold" size="24.0" />
+                                </font>
+                            </Label>
+                        <JFXTextField layoutX="177.0" prefHeight="29.0" prefWidth="237.0" />
+                        <JFXTextField layoutX="172.0" layoutY="75.0" prefHeight="29.0" prefWidth="237.0" />
+                        </children>
+                    </Group>
+                  <JFXTextField layoutX="620.0" prefHeight="29.0" prefWidth="237.0" />
+                  <JFXTextField layoutX="624.0" layoutY="75.0" prefHeight="29.0" prefWidth="237.0" />
+               </children>
+            </Group>
+         </children>
+      </Group>
+        <TableView layoutX="15.0" layoutY="507.0" prefHeight="309.0" prefWidth="1001.0">
+            <columns>
+                <TableColumn prefWidth="252.0" text="Room Type Id" />
+                <TableColumn prefWidth="296.0" text="Room Type" />
+                <TableColumn prefWidth="282.0" text="Key Money" />
+                <TableColumn prefWidth="174.0" text="Rooms Qty" />
+            </columns>
+        </TableView>
+        <JFXButton layoutX="611.0" layoutY="398.0" prefHeight="31.0" prefWidth="336.0" style="-fx-background-color: #1E90FF;" text="Save">
+            <font>
+                <Font name="System Bold" size="15.0" />
+            </font>
+        </JFXButton>
+        <JFXButton layoutX="611.0" layoutY="447.0" prefHeight="31.0" prefWidth="336.0" style="-fx-background-color: #DC143C;" text="Delete">
+            <font>
+                <Font name="System Bold" size="15.0" />
+            </font>
+        </JFXButton>
+    </children>
+
+</AnchorPane>

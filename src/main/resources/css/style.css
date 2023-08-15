@@ -1,0 +1,29 @@
+#anchorPane{
+    -fx-background-color: linear-gradient(to bottom, #669999 0%, #99ccff 100%);
+}
+
+#loginBtn{
+    -fx-background-color: linear-gradient(to right, #003366 0%, #33ccff 100%);
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 25px;
+    -fx-background-radius: 10;
+
+}
+
+#anchorpane2{
+    -fx-border-color: #DAA520; /* Border color */
+    -fx-border-width: 4px; /* Border width */
+    -fx-border-style: solid; /* Border style */
+
+}
+
+#reservationBtn,#roomsBtn,#studentBtn,#logOutBtn{
+
+    -fx-background-color: transparent; /* Set transparent background */
+    -fx-text-fill: white; /* Text color */
+    -fx-border-color: white; /* Outline color */
+    -fx-border-width: 2px; /* Outline width */
+    -fx-border-style: solid; /* Outline style */
+
+}
