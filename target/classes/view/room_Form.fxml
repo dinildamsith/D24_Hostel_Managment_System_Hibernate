@@ -21,7 +21,7 @@
          <children>
             <Group layoutY="-21.0">
                <children>
-                    <Group>
+                    <Group layoutX="-41.0" layoutY="-7.0">
                         <children>
                             <Label text="Room Type Id :">
                                 <font>
@@ -47,8 +47,8 @@
                         <JFXTextField layoutX="172.0" layoutY="75.0" prefHeight="29.0" prefWidth="237.0" />
                         </children>
                     </Group>
-                  <JFXTextField layoutX="620.0" prefHeight="29.0" prefWidth="237.0" />
-                  <JFXTextField layoutX="624.0" layoutY="75.0" prefHeight="29.0" prefWidth="237.0" />
+                  <JFXTextField layoutX="580.0" layoutY="-7.0" prefHeight="29.0" prefWidth="237.0" />
+                  <JFXTextField layoutX="584.0" layoutY="69.0" prefHeight="29.0" prefWidth="237.0" />
                </children>
             </Group>
          </children>

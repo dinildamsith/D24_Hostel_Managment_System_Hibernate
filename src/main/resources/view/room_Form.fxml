@@ -43,30 +43,30 @@
                                     <Font name="System Bold" size="24.0" />
                                 </font>
                             </Label>
-                        <JFXTextField layoutX="177.0" prefHeight="29.0" prefWidth="237.0" />
-                        <JFXTextField layoutX="172.0" layoutY="75.0" prefHeight="29.0" prefWidth="237.0" />
+                        <JFXTextField fx:id="roomTypeIdTxt" layoutX="177.0" prefHeight="29.0" prefWidth="237.0" />
+                        <JFXTextField fx:id="keyMoneyTxt" layoutX="172.0" layoutY="75.0" prefHeight="29.0" prefWidth="237.0" />
                         </children>
                     </Group>
-                  <JFXTextField layoutX="580.0" layoutY="-7.0" prefHeight="29.0" prefWidth="237.0" />
-                  <JFXTextField layoutX="584.0" layoutY="69.0" prefHeight="29.0" prefWidth="237.0" />
+                  <JFXTextField fx:id="roomTypeTxt" layoutX="580.0" layoutY="-7.0" prefHeight="29.0" prefWidth="237.0" />
+                  <JFXTextField fx:id="roomQtyTxt" layoutX="584.0" layoutY="69.0" prefHeight="29.0" prefWidth="237.0" />
                </children>
             </Group>
          </children>
       </Group>
-        <TableView layoutX="16.0" layoutY="467.0" prefHeight="309.0" prefWidth="1001.0">
+        <TableView fx:id="roomTable" layoutX="16.0" layoutY="467.0" prefHeight="309.0" prefWidth="1001.0">
             <columns>
-                <TableColumn prefWidth="252.0" text="Room Type Id" />
-                <TableColumn prefWidth="296.0" text="Room Type" />
-                <TableColumn prefWidth="282.0" text="Key Money" />
-                <TableColumn prefWidth="174.0" text="Rooms Qty" />
+                <TableColumn fx:id="roomTypeIdColumn" prefWidth="252.0" text="Room Type Id" />
+                <TableColumn fx:id="roomTypeColumn" prefWidth="296.0" text="Room Type" />
+                <TableColumn fx:id="keyMoneyColumn" prefWidth="282.0" text="Key Money" />
+                <TableColumn fx:id="roomQtyColumn" prefWidth="174.0" text="Rooms Qty" />
             </columns>
         </TableView>
-        <JFXButton layoutX="611.0" layoutY="385.0" prefHeight="31.0" prefWidth="336.0" style="-fx-background-color: #1E90FF;" text="Save">
+        <JFXButton fx:id="saveBtn" layoutX="611.0" layoutY="385.0" onAction="#saveBtnOnAction" prefHeight="31.0" prefWidth="336.0" style="-fx-background-color: #1E90FF;" text="Save">
             <font>
                 <Font name="System Bold" size="15.0" />
             </font>
         </JFXButton>
-        <JFXButton layoutX="611.0" layoutY="424.0" prefHeight="31.0" prefWidth="336.0" style="-fx-background-color: #DC143C;" text="Delete">
+        <JFXButton fx:id="deleteBtn" layoutX="611.0" layoutY="424.0" onAction="#deleteBtnOnAction" prefHeight="31.0" prefWidth="336.0" style="-fx-background-color: #DC143C;" text="Delete">
             <font>
                 <Font name="System Bold" size="15.0" />
             </font>
