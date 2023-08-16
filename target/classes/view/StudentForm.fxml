@@ -45,43 +45,43 @@
                   <Font name="System Bold" size="24.0" />
                </font>
             </Label>
-            <JFXTextField layoutX="209.0" layoutY="4.0" prefHeight="29.0" prefWidth="222.0" />
-            <JFXTextField layoutX="682.0" layoutY="4.0" prefHeight="29.0" prefWidth="222.0" />
-            <JFXTextField layoutX="207.0" layoutY="69.0" prefHeight="29.0" prefWidth="222.0" />
-            <CheckBox layoutX="841.0" layoutY="70.0" mnemonicParsing="false" text="Male">
+            <JFXTextField fx:id="studentNameTxt" layoutX="209.0" layoutY="4.0" prefHeight="29.0" prefWidth="222.0" />
+            <JFXTextField fx:id="StudentAddressTxt" layoutX="682.0" layoutY="4.0" prefHeight="29.0" prefWidth="222.0" />
+            <JFXTextField fx:id="contactNumberTxt" layoutX="207.0" layoutY="69.0" prefHeight="29.0" prefWidth="222.0" />
+            <CheckBox fx:id="maleCheckBox" layoutX="841.0" layoutY="70.0" mnemonicParsing="false" onAction="#maleCheckBoxOnAction" text="Male">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </CheckBox>
-            <CheckBox layoutX="841.0" layoutY="101.0" mnemonicParsing="false" text="Female">
+            <CheckBox fx:id="femaleCheckBox" layoutX="841.0" layoutY="101.0" mnemonicParsing="false" onAction="#femaleCheckBoxOnAction" text="Female">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </CheckBox>
-            <DatePicker layoutX="592.0" layoutY="80.0" />
+            <DatePicker fx:id="birthdatPiker" layoutX="592.0" layoutY="80.0" />
          </children>
       </Group>
-      <Label layoutX="185.0" layoutY="190.0" text="S001">
+      <Label fx:id="studentIdLbl" layoutX="185.0" layoutY="190.0" text="S001">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <TableView layoutX="14.0" layoutY="469.0" prefHeight="309.0" prefWidth="1005.0">
+      <TableView fx:id="studentTable" layoutX="14.0" layoutY="469.0" prefHeight="309.0" prefWidth="1005.0">
         <columns>
-          <TableColumn prefWidth="143.0" text="Student Id" />
-            <TableColumn prefWidth="180.0" text="Student Name" />
-            <TableColumn prefWidth="224.0" text="Student Address" />
-            <TableColumn prefWidth="201.0" text="Contact Number" />
-            <TableColumn prefWidth="159.0" text="BirthDay" />
-            <TableColumn prefWidth="97.0" text="Gender" />
+          <TableColumn fx:id="idColumn" prefWidth="143.0" text="Student Id" />
+            <TableColumn fx:id="nameColum" prefWidth="180.0" text="Student Name" />
+            <TableColumn fx:id="addressColumn" prefWidth="224.0" text="Student Address" />
+            <TableColumn fx:id="contactColumn" prefWidth="201.0" text="Contact Number" />
+            <TableColumn fx:id="birthColumn" prefWidth="159.0" text="BirthDay" />
+            <TableColumn fx:id="genderColumn" prefWidth="97.0" text="Gender" />
         </columns>
       </TableView>
-      <JFXButton layoutX="626.0" layoutY="386.0" prefHeight="31.0" prefWidth="336.0" style="-fx-background-color: #1E90FF;" text="Save">
+      <JFXButton fx:id="saveBtn" layoutX="626.0" layoutY="386.0" onAction="#saveBtnOnAction" prefHeight="31.0" prefWidth="336.0" style="-fx-background-color: #1E90FF;" text="Save">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </JFXButton>
-      <JFXButton layoutX="626.0" layoutY="424.0" prefHeight="31.0" prefWidth="336.0" style="-fx-background-color: #DC143C;" text="Delete">
+      <JFXButton fx:id="deleteBtn" layoutX="626.0" layoutY="424.0" onAction="#deleteBtnOnAction" prefHeight="31.0" prefWidth="336.0" style="-fx-background-color: #DC143C;" text="Delete">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
