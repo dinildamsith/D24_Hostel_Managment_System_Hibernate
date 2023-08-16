@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="782.0" prefWidth="1029.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.d24_hostel_managment_system.Controller.ReservationFormController">
+<AnchorPane prefHeight="827.0" prefWidth="1032.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.d24_hostel_managment_system.Controller.ReservationFormController">
     <children>
         <Label layoutX="383.0" layoutY="21.0" text="Reservation">
             <font>
@@ -23,7 +23,7 @@
                 <Font name="System Bold" size="24.0" />
             </font>
         </Label>
-        <Group layoutX="43.0" layoutY="250.0">
+        <Group layoutX="43.0" layoutY="270.0">
             <children>
                 <Label layoutX="-5.0" layoutY="-3.0" text="Student Id    :">
                     <font>
@@ -70,7 +70,7 @@
                 <Font size="20.0" />
             </font>
         </Label>
-        <TableView layoutX="12.0" layoutY="467.0" prefHeight="309.0" prefWidth="1005.0">
+        <TableView layoutX="15.0" layoutY="507.0" prefHeight="309.0" prefWidth="1005.0">
             <columns>
                 <TableColumn prefWidth="143.0" text="Reservation Id" />
                 <TableColumn prefWidth="180.0" text="Student Id" />
@@ -80,17 +80,17 @@
                 <TableColumn prefWidth="97.0" text="Status" />
             </columns>
         </TableView>
-        <JFXButton layoutX="626.0" layoutY="376.0" prefHeight="31.0" prefWidth="336.0" style="-fx-background-color: #1E90FF;" text="Save">
+        <JFXButton layoutX="626.0" layoutY="414.0" prefHeight="31.0" prefWidth="336.0" style="-fx-background-color: #1E90FF;" text="Save">
             <font>
                 <Font name="System Bold" size="15.0" />
             </font>
         </JFXButton>
-        <JFXButton layoutX="626.0" layoutY="421.0" prefHeight="31.0" prefWidth="336.0" style="-fx-background-color: #DC143C;" text="Delete">
+        <JFXButton layoutX="626.0" layoutY="457.0" prefHeight="31.0" prefWidth="336.0" style="-fx-background-color: #DC143C;" text="Delete">
             <font>
                 <Font name="System Bold" size="15.0" />
             </font>
         </JFXButton>
-      <Label layoutX="939.0" layoutY="257.0" text="Ac">
+      <Label layoutX="939.0" layoutY="276.0" text="Ac">
          <font>
             <Font size="20.0" />
          </font>
