@@ -31,22 +31,29 @@ public class DashBordController {
 
     @FXML
     void studentBtnOnAction(ActionEvent event) throws IOException {
-
-
-    }
-
-
-
-    @FXML
-    void roomsBtnOnAction(ActionEvent event) {
+        AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/view/StudentForm.fxml"));
+        root.getChildren().clear();
+        root.getChildren().add(anchorPane);
 
     }
 
 
 
     @FXML
-    void reservationBtnOnAction(ActionEvent event) {
+    void roomsBtnOnAction(ActionEvent event) throws IOException {
+        AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/view/room_Form.fxml"));
+        root.getChildren().clear();
+        root.getChildren().add(anchorPane);
+    }
 
+
+
+    @FXML
+    void reservationBtnOnAction(ActionEvent event) throws IOException {
+
+        AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/view/reservation_Form.fxml"));
+        root.getChildren().clear();
+        root.getChildren().add(anchorPane);
 
     }
 

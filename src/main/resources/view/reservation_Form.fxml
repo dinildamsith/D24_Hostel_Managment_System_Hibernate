@@ -18,7 +18,7 @@
                 <Font name="Arial Black" size="41.0" />
             </font>
         </Label>
-        <Label layoutX="38.0" layoutY="201.0" text="Reservation Id :">
+        <Label layoutX="38.0" layoutY="186.0" text="Reservation Id :">
             <font>
                 <Font name="System Bold" size="24.0" />
             </font>
@@ -65,7 +65,7 @@
             <ComboBox layoutX="531.0" layoutY="-1.0" prefWidth="150.0" />
             </children>
         </Group>
-        <Label layoutX="229.0" layoutY="203.0" text="RE001">
+        <Label layoutX="227.0" layoutY="191.0" text="RE001">
             <font>
                 <Font size="20.0" />
             </font>

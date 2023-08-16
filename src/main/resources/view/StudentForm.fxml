@@ -18,7 +18,7 @@
             <Font name="Arial Black" size="41.0" />
          </font>
       </Label>
-      <Label layoutX="43.0" layoutY="201.0" text="Student Id :">
+      <Label layoutX="43.0" layoutY="187.0" text="Student Id :">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
@@ -61,7 +61,7 @@
             <DatePicker layoutX="592.0" layoutY="80.0" />
          </children>
       </Group>
-      <Label layoutX="186.0" layoutY="204.0" text="S001">
+      <Label layoutX="185.0" layoutY="190.0" text="S001">
          <font>
             <Font size="20.0" />
          </font>

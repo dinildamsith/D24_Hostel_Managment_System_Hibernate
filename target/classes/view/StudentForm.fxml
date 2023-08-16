@@ -11,19 +11,19 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="827.0" prefWidth="1032.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.d24_hostel_managment_system.Controller.StudentFormController">
+<AnchorPane prefHeight="782.0" prefWidth="1029.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.d24_hostel_managment_system.Controller.StudentFormController">
    <children>
       <Label layoutX="428.0" layoutY="27.0" text="Student">
          <font>
             <Font name="Arial Black" size="41.0" />
          </font>
       </Label>
-      <Label layoutX="43.0" layoutY="201.0" text="Student Id :">
+      <Label layoutX="43.0" layoutY="187.0" text="Student Id :">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Group layoutX="43.0" layoutY="270.0">
+      <Group layoutX="43.0" layoutY="251.0">
          <children>
             <Label text="Student Name    :">
                <font>
@@ -61,12 +61,12 @@
             <DatePicker layoutX="592.0" layoutY="80.0" />
          </children>
       </Group>
-      <Label layoutX="186.0" layoutY="204.0" text="S001">
+      <Label layoutX="185.0" layoutY="190.0" text="S001">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <TableView layoutX="15.0" layoutY="507.0" prefHeight="309.0" prefWidth="1005.0">
+      <TableView layoutX="14.0" layoutY="469.0" prefHeight="309.0" prefWidth="1005.0">
         <columns>
           <TableColumn prefWidth="143.0" text="Student Id" />
             <TableColumn prefWidth="180.0" text="Student Name" />
@@ -76,12 +76,12 @@
             <TableColumn prefWidth="97.0" text="Gender" />
         </columns>
       </TableView>
-      <JFXButton layoutX="626.0" layoutY="414.0" prefHeight="31.0" prefWidth="336.0" style="-fx-background-color: #1E90FF;" text="Save">
+      <JFXButton layoutX="626.0" layoutY="386.0" prefHeight="31.0" prefWidth="336.0" style="-fx-background-color: #1E90FF;" text="Save">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </JFXButton>
-      <JFXButton layoutX="626.0" layoutY="457.0" prefHeight="31.0" prefWidth="336.0" style="-fx-background-color: #DC143C;" text="Delete">
+      <JFXButton layoutX="626.0" layoutY="424.0" prefHeight="31.0" prefWidth="336.0" style="-fx-background-color: #DC143C;" text="Delete">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
