@@ -5,6 +5,11 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import lk.ijse.d24_hostel_managment_system.entity.Room;
+import lk.ijse.d24_hostel_managment_system.entity.Student;
+import lk.ijse.d24_hostel_managment_system.utill.FactoryConfiguration;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 public class StudentFormController {
 
