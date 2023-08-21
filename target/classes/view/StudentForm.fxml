@@ -3,7 +3,7 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.Group?>
-<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
@@ -48,17 +48,8 @@
             <JFXTextField fx:id="studentNameTxt" layoutX="209.0" layoutY="4.0" prefHeight="29.0" prefWidth="222.0" />
             <JFXTextField fx:id="StudentAddressTxt" layoutX="682.0" layoutY="4.0" prefHeight="29.0" prefWidth="222.0" />
             <JFXTextField fx:id="contactNumberTxt" layoutX="207.0" layoutY="69.0" prefHeight="29.0" prefWidth="222.0" />
-            <CheckBox fx:id="maleCheckBox" layoutX="841.0" layoutY="70.0" mnemonicParsing="false" onAction="#maleCheckBoxOnAction" text="Male">
-               <font>
-                  <Font name="System Bold" size="15.0" />
-               </font>
-            </CheckBox>
-            <CheckBox fx:id="femaleCheckBox" layoutX="841.0" layoutY="101.0" mnemonicParsing="false" onAction="#femaleCheckBoxOnAction" text="Female">
-               <font>
-                  <Font name="System Bold" size="15.0" />
-               </font>
-            </CheckBox>
             <DatePicker fx:id="birthdatPiker" layoutX="592.0" layoutY="80.0" />
+            <ComboBox fx:id="gender" layoutX="829.0" layoutY="78.0" prefWidth="150.0" />
          </children>
       </Group>
       <Label fx:id="studentIdLbl" layoutX="185.0" layoutY="190.0" text="S001">

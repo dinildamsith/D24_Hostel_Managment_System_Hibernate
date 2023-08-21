@@ -6,21 +6,23 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 @Getter
 @Setter
 @Entity
-
+@ToString
 public class Student {
     @Id
     private String student_Id;
     private String student_Name;
     private String student_Address;
     private String contact;
-    private String birthday;
+    private LocalDate birthday;
     private String gender;
 
     @OneToMany (mappedBy = "student")
@@ -30,7 +32,7 @@ public class Student {
 
     }
 
-    public Student(String student_Id, String student_Name, String student_Address, String contact, String birthday, String gender, List<Reservation> list) {
+    public Student(String student_Id, String student_Name, String student_Address, String contact, LocalDate birthday, String gender, List<Reservation> list) {
         this.student_Id = student_Id;
         this.student_Name = student_Name;
         this.student_Address = student_Address;
@@ -38,5 +40,14 @@ public class Student {
         this.birthday = birthday;
         this.gender = gender;
         this.list = list;
+    }
+
+    public Student(String student_Id, String student_Name, String student_Address, String contact, LocalDate birthday, String gender) {
+        this.student_Id = student_Id;
+        this.student_Name = student_Name;
+        this.student_Address = student_Address;
+        this.contact = contact;
+        this.birthday = birthday;
+        this.gender = gender;
     }
 }
