@@ -25,7 +25,7 @@ public class Student {
     private LocalDate birthday;
     private String gender;
 
-    @OneToMany (mappedBy = "student")
+    @OneToMany (mappedBy = "student",targetEntity = Reservation.class)
     private List<Reservation>  list = new ArrayList<>();
 
     public Student(){

@@ -15,8 +15,10 @@ import lk.ijse.d24_hostel_managment_system.dto.StudentDTO;
 import lk.ijse.d24_hostel_managment_system.dto.TM.StudentTM;
 import lk.ijse.d24_hostel_managment_system.entity.Student;
 import org.controlsfx.control.Notifications;
+import org.hibernate.query.Query;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.*;
 
 public class StudentFormController implements Initializable {
@@ -66,30 +68,72 @@ public class StudentFormController implements Initializable {
     @FXML
     private JFXButton deleteBtn;
 
+    @FXML
+    private JFXButton updateBtn;
+
     StudentDAOImpl studentDAO = new StudentDAOImpl();
-
-
-
-
-
 
     @FXML
     void saveBtnOnAction(ActionEvent event) {
-
-        boolean isSaved=studentDAO.save(new Student(studentIdLbl.getText(),studentNameTxt.getText(),StudentAddressTxt.getText(),contactNumberTxt.getText(),birthdatPiker.getValue(),gender.getSelectionModel().getSelectedItem()));
-        if (isSaved){
+        String s=studentDAO.existId(studentIdLbl.getText());
+        if (s != null){
+            boolean isSaved = studentDAO.save(new Student(studentIdLbl.getText(), studentNameTxt.getText(), StudentAddressTxt.getText(), contactNumberTxt.getText(), birthdatPiker.getValue(), gender.getSelectionModel().getSelectedItem()));
+            if (isSaved) {
+                studentTableAddData();
                 Notifications.create()
                         .title("Notification !")
                         .text("Student Saved !!")
                         .position(Pos.TOP_CENTER)
                         .showInformation();
 
+                 }
+            }
+        }
+
+    @FXML
+    void updateOnAction(ActionEvent event) {
+        boolean isUpdate = studentDAO.update(new Student(studentIdLbl.getText(), studentNameTxt.getText(), StudentAddressTxt.getText(), contactNumberTxt.getText(), birthdatPiker.getValue(), gender.getSelectionModel().getSelectedItem()));
+        if (isUpdate) {
+            Notifications.create()
+                    .title("Notification !")
+                    .text("Student Updated !!")
+                    .position(Pos.TOP_CENTER)
+                    .showInformation();
         }
     }
 
+
+
+
+
     @FXML
     void deleteBtnOnAction(ActionEvent event) {
+        boolean isDelete = studentDAO.delete(new Student(studentIdLbl.getText(),studentNameTxt.getText(),StudentAddressTxt.getText(),contactNumberTxt.getText(),birthdatPiker.getValue(),gender.getSelectionModel().getSelectedItem()));
+        if (isDelete){
+            Notifications.create()
+                    .title("Notification !")
+                    .text("Student Delete !!")
+                    .position(Pos.TOP_CENTER)
+                    .showInformation();
 
+        }
+    }
+
+    private void tableListener(){
+        studentTable.getSelectionModel().selectedItemProperty().addListener((ob, oldValue, newValue) -> {
+            if (newValue != null){
+            saveBtn.setVisible(false);
+//                saveBtn.setText("Update Details");
+//                saveBtn.setStyle("-fx-background-color: #f48c06");
+                studentIdLbl.setText(newValue.getStudent_Id());
+                studentNameTxt.setText(newValue.getStudent_Name());
+                StudentAddressTxt.setText(newValue.getStudent_Address());
+                contactNumberTxt.setText(newValue.getContact());
+                birthdatPiker.setValue(LocalDate.parse(newValue.getBirthday().toString()));
+                gender.setValue(String.valueOf(newValue.getGender()));
+
+            }
+        });
     }
 
     private void setCellValues() {
@@ -113,6 +157,7 @@ public class StudentFormController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        tableListener();
         setCellValues();
         studentTableAddData();
         Object o = studentDAO.generateNewID();

@@ -14,8 +14,6 @@ import lombok.Setter;
 public class Reservation {
     @Id
     private String reservation_Id;
-    private String student_Id;
-    private String room_Type_Id;
     private String room_Type;
     private String date;
     private String status;
@@ -30,10 +28,8 @@ public class Reservation {
 
     }
 
-    public Reservation(String reservation_Id, String student_Id, String room_Type_Id, String room_Type, String date, String status, Student student, Room room) {
+    public Reservation(String reservation_Id, String room_Type, String date, String status, Student student, Room room) {
         this.reservation_Id = reservation_Id;
-        this.student_Id = student_Id;
-        this.room_Type_Id = room_Type_Id;
         this.room_Type = room_Type;
         this.date = date;
         this.status = status;

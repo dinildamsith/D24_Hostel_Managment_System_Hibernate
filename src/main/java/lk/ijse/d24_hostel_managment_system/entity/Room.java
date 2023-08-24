@@ -22,7 +22,7 @@ public class Room {
     private String key_Money;
     private String rooms_Qty;
 
-    @OneToMany(mappedBy = "room")
+    @OneToMany(mappedBy = "room",targetEntity = Reservation.class)
     private List<Reservation> list = new ArrayList<>();
 
     public Room(){

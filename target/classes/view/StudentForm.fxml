@@ -67,6 +67,11 @@
             <TableColumn fx:id="genderColumn" prefWidth="97.0" text="Gender" />
         </columns>
       </TableView>
+      <JFXButton fx:id="updateBtn" layoutX="626.0" layoutY="386.0" onAction="#updateOnAction" prefHeight="31.0" prefWidth="336.0" style="-fx-background-color: orange;" text="Update">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </JFXButton>
       <JFXButton fx:id="saveBtn" layoutX="626.0" layoutY="386.0" onAction="#saveBtnOnAction" prefHeight="31.0" prefWidth="336.0" style="-fx-background-color: #1E90FF;" text="Save">
          <font>
             <Font name="System Bold" size="15.0" />
