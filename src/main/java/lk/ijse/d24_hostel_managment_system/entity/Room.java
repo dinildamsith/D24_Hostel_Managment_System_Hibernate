@@ -36,4 +36,11 @@ public class Room {
         this.rooms_Qty = rooms_Qty;
         this.list = list;
     }
+
+    public Room(String text, String text1, String text2, String text3) {
+        room_Type_Id=text;
+        room_Type=text1;
+        key_Money=text2;
+        rooms_Qty=text3;
+    }
 }
