@@ -94,7 +94,15 @@ public class RoomFormController implements Initializable {
 
     @FXML
     void deleteBtnOnAction(ActionEvent event) {
-
+        boolean isDeleted = roomDAO.delete(new Room(roomTypeIdTxt.getText(),roomTypeTxt.getText(),keyMoneyTxt.getText(),roomQtyTxt.getText()));
+        if (isDeleted){
+            System.out.println("hi");
+            Notifications.create()
+                    .title("Notification !")
+                    .text("Room Deleted !!")
+                    .position(Pos.TOP_CENTER)
+                    .showInformation();
+        }
     }
 
     @FXML
