@@ -61,6 +61,7 @@ public class RoomFormController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         roomTableAddData();
         setCellValues();
+        tableListener();
     }
 
     private void setCellValues() {
@@ -77,6 +78,18 @@ public class RoomFormController implements Initializable {
         for (Room room : all){
             roomTable.getItems().add(new RoomDTO(room.getRoom_Type_Id(),room.getRoom_Type(),room.getKey_Money(),room.getRooms_Qty()));
         }
+    }
+
+    private void  tableListener(){
+        roomTable.getSelectionModel().selectedItemProperty().addListener((ob, oldValue, newValue) ->{
+            if (newValue !=null){
+                saveBtn.setVisible(false);
+                roomTypeIdTxt.setText(newValue.getRoom_Type_Id());
+                roomTypeTxt.setText(newValue.getRoom_Type());
+                keyMoneyTxt.setText(newValue.getKey_Money());
+                roomQtyTxt.setText(newValue.getRooms_Qty());
+            }
+        });
     }
 
 
