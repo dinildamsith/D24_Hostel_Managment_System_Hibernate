@@ -1,9 +1,6 @@
 package lk.ijse.d24_hostel_managment_system.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -25,7 +22,7 @@ public class Student {
     private LocalDate birthday;
     private String gender;
 
-    @OneToMany (mappedBy = "student",targetEntity = Reservation.class)
+    @OneToMany (mappedBy = "student",cascade = CascadeType.ALL,targetEntity = Reservation.class)
     private List<Reservation>  list = new ArrayList<>();
 
     public Student(){

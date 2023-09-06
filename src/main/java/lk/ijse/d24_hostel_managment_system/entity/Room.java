@@ -1,12 +1,10 @@
 package lk.ijse.d24_hostel_managment_system.entity;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +12,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
+@ToString
 
 public class Room {
     @Id
@@ -22,7 +21,7 @@ public class Room {
     private String key_Money;
     private String rooms_Qty;
 
-    @OneToMany(mappedBy = "room",targetEntity = Reservation.class)
+    @OneToMany(mappedBy = "room",cascade = CascadeType.ALL,targetEntity = Reservation.class)
     private List<Reservation> list = new ArrayList<>();
 
     public Room(){

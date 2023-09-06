@@ -1,39 +1,40 @@
 package lk.ijse.d24_hostel_managment_system.entity;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.time.LocalDate;
 
 @Getter
 @Setter
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 public class Reservation {
     @Id
     private String reservation_Id;
     private String room_Type;
-    private String date;
+    private LocalDate date;
     private String status;
 
-    @ManyToOne
+   // @JoinColumn(name = "student_id")
+    @ManyToOne ( fetch = FetchType.EAGER)
     private Student student;
 
-    @ManyToOne
+  // @JoinColumn(name = "room_id")
+    @ManyToOne ( fetch = FetchType.EAGER)
     private Room room;
 
-    public Reservation(){
-
-    }
-
-    public Reservation(String reservation_Id, String room_Type, String date, String status, Student student, Room room) {
-        this.reservation_Id = reservation_Id;
-        this.room_Type = room_Type;
-        this.date = date;
-        this.status = status;
-        this.student = student;
-        this.room = room;
+    public Reservation(String text, String text1, LocalDate value, String selectedItem, String selectedItem1, String selectedItem2) {
+        reservation_Id=text;
+        room_Type=text1;
+        date=value;
+        status=selectedItem;
+        student.setStudent_Id(selectedItem1);
+        room.setRoom_Type_Id(selectedItem2);
     }
 }

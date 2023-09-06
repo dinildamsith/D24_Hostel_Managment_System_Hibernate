@@ -12,18 +12,24 @@
 }
 
 #anchorpane2{
-    -fx-border-color: #DAA520; /* Border color */
-    -fx-border-width: 4px; /* Border width */
-    -fx-border-style: solid; /* Border style */
+
 
 }
 
 #reservationBtn,#roomsBtn,#studentBtn,#logOutBtn{
 
     -fx-background-color: transparent; /* Set transparent background */
-    -fx-text-fill: white; /* Text color */
+    -fx-text-fill:White; /* Text color */
     -fx-border-color: white; /* Outline color */
     -fx-border-width: 2px; /* Outline width */
     -fx-border-style: solid; /* Outline style */
 
 }
+/* Your CSS file */
+/*#studentBtn{*/
+
+/*    -fx-background-color: #F4EEEE; !* Replace with your desired background color *!*/
+/*    -fx-border-color: #000000; !* Border color (black in this example) *!*/
+/*    -fx-border-width: 2px;     !* Border width (2 pixels in this example) *!*/
+/*    -fx-border-radius: 5px;    !* Border radius (rounded corners, adjust as needed) *!*/
+/*}*/

@@ -2,7 +2,6 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.Group?>
-<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
@@ -11,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="782.0" prefWidth="1029.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.d24_hostel_managment_system.Controller.ReservationFormController">
+<AnchorPane prefHeight="792.0" prefWidth="1187.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.d24_hostel_managment_system.Controller.ReservationFormController">
     <children>
         <Label layoutX="383.0" layoutY="21.0" text="Reservation">
             <font>
@@ -40,18 +39,8 @@
                         <Font name="System Bold" size="24.0" />
                     </font>
                 </Label>
-                <CheckBox fx:id="paidCheckBox" layoutX="666.0" layoutY="89.0" mnemonicParsing="false" text="Paid">
-                    <font>
-                        <Font name="System Bold" size="15.0" />
-                    </font>
-                </CheckBox>
-                <CheckBox fx:id="unPaidCheckBox" layoutX="737.0" layoutY="89.0" mnemonicParsing="false" text="Un Paid">
-                    <font>
-                        <Font name="System Bold" size="15.0" />
-                    </font>
-                </CheckBox>
                 <DatePicker fx:id="datePicker" layoutX="156.0" layoutY="78.0" />
-                <Label layoutX="472.0" layoutY="81.0" text="Status               :">
+                <Label layoutX="472.0" layoutY="81.0" prefHeight="35.0" prefWidth="177.0" text="Status   :">
                     <font>
                         <Font name="System Bold" size="24.0" />
                     </font>
@@ -62,7 +51,8 @@
                </font>
             </Label>
             <ComboBox fx:id="studentIdComboBox" layoutX="155.0" layoutY="-2.0" prefWidth="150.0" />
-            <ComboBox fx:id="roomTypeIdComboBox" layoutX="531.0" layoutY="-1.0" prefWidth="150.0" />
+            <ComboBox fx:id="roomTypeIdComboBox" layoutX="531.0" layoutY="-1.0" onAction="#roomTypeIdCombobox" prefWidth="150.0" />
+            <ComboBox fx:id="statusComboBox" layoutX="580.0" layoutY="86.0" prefWidth="150.0" />
             </children>
         </Group>
         <Label fx:id="reservationIdLbl" layoutX="227.0" layoutY="191.0" text="RE001">
@@ -85,7 +75,7 @@
                 <Font name="System Bold" size="15.0" />
             </font>
         </JFXButton>
-        <JFXButton fx:id="deleteBtn" layoutX="626.0" layoutY="421.0" onAction="#delteBtnOnAction" prefHeight="31.0" prefWidth="336.0" style="-fx-background-color: #DC143C;" text="Delete">
+        <JFXButton fx:id="deleteBtn" layoutX="626.0" layoutY="421.0" onAction="#deleteBtnOnAction" prefHeight="31.0" prefWidth="336.0" style="-fx-background-color: #DC143C;" text="Delete">
             <font>
                 <Font name="System Bold" size="15.0" />
             </font>

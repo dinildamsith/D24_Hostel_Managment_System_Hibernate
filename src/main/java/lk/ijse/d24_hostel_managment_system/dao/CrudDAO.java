@@ -11,6 +11,6 @@ public interface CrudDAO<T> {
     boolean update(T entity);
     boolean delete(T entity);
     String existId(String id);
-    ObservableList search(String id);
+    Object search(String id);
     Object generateNewID();
 }

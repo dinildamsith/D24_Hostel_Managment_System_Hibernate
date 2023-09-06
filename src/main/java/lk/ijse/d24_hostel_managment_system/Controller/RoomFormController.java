@@ -9,6 +9,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import lk.ijse.d24_hostel_managment_system.bo.custom.impl.RoomBoImpl;
 import lk.ijse.d24_hostel_managment_system.dao.custom.impl.RoomDAOImpl;
 import lk.ijse.d24_hostel_managment_system.dto.RoomDTO;
 import lk.ijse.d24_hostel_managment_system.entity.Room;
@@ -56,6 +57,7 @@ public class RoomFormController implements Initializable {
     private JFXButton updateBtn;
 
     RoomDAOImpl roomDAO = new RoomDAOImpl();
+    RoomBoImpl roomBo = new RoomBoImpl();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -95,21 +97,23 @@ public class RoomFormController implements Initializable {
 
     @FXML
     void saveBtnOnAction(ActionEvent event) {
-        boolean roomSaved = roomDAO.save(new Room(roomTypeIdTxt.getText(),roomTypeTxt.getText(),keyMoneyTxt.getText(),roomQtyTxt.getText()));
-        if (roomSaved){
-            Notifications.create()
-                    .title("Notification !")
-                    .text("Room Saved !!")
-                    .position(Pos.TOP_CENTER)
-                    .showInformation();
-        }
+        String id = roomDAO.existId(roomTypeIdTxt.getText());
+            boolean roomSaved = roomBo.saveRoom(new RoomDTO(roomTypeIdTxt.getText(), roomTypeTxt.getText(), keyMoneyTxt.getText(), roomQtyTxt.getText()));
+            if (roomSaved) {
+                Notifications.create()
+                        .title("Notification!")
+                        .text("Room Saved!!")
+                        .position(Pos.TOP_CENTER)
+                        .showInformation();
+            }
+
+
     }
 
     @FXML
     void deleteBtnOnAction(ActionEvent event) {
-        boolean isDeleted = roomDAO.delete(new Room(roomTypeIdTxt.getText(),roomTypeTxt.getText(),keyMoneyTxt.getText(),roomQtyTxt.getText()));
+        boolean isDeleted = roomBo.deleteRoom(new RoomDTO(roomTypeIdTxt.getText(),roomTypeTxt.getText(),keyMoneyTxt.getText(),roomQtyTxt.getText()));
         if (isDeleted){
-            System.out.println("hi");
             Notifications.create()
                     .title("Notification !")
                     .text("Room Deleted !!")
@@ -120,7 +124,15 @@ public class RoomFormController implements Initializable {
 
     @FXML
     void updateOnAction(ActionEvent event) {
+        boolean isUpdate = roomBo.updateRoom(new RoomDTO(roomTypeIdTxt.getText(),roomTypeTxt.getText(),keyMoneyTxt.getText(),roomQtyTxt.getText()));
+        if (isUpdate){
+            Notifications.create()
+                    .title("Notification !")
+                    .text("Room Updated!!")
+                    .position(Pos.TOP_CENTER)
+                    .showInformation();
 
+        }
     }
 
 

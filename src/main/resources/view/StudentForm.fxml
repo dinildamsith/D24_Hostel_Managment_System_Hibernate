@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="782.0" prefWidth="1029.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.d24_hostel_managment_system.Controller.StudentFormController">
+<AnchorPane prefHeight="792.0" prefWidth="1187.0" style="-fx-background-color: #cfd8dc;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.d24_hostel_managment_system.Controller.StudentFormController">
    <children>
       <Label layoutX="428.0" layoutY="27.0" text="Student">
          <font>
@@ -54,7 +54,7 @@
       </Group>
       <Label fx:id="studentIdLbl" layoutX="185.0" layoutY="190.0" text="S001">
          <font>
-            <Font size="20.0" />
+            <Font name="System Bold" size="20.0" />
          </font>
       </Label>
       <TableView fx:id="studentTable" layoutX="14.0" layoutY="469.0" prefHeight="309.0" prefWidth="1005.0">

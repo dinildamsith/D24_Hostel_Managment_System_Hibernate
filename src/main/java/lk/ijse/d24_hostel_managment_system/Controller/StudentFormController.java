@@ -10,12 +10,11 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import lk.ijse.d24_hostel_managment_system.bo.custom.impl.StudentBOImpl;
 import lk.ijse.d24_hostel_managment_system.dao.custom.impl.StudentDAOImpl;
 import lk.ijse.d24_hostel_managment_system.dto.StudentDTO;
-import lk.ijse.d24_hostel_managment_system.dto.TM.StudentTM;
 import lk.ijse.d24_hostel_managment_system.entity.Student;
 import org.controlsfx.control.Notifications;
-import org.hibernate.query.Query;
 
 import java.net.URL;
 import java.time.LocalDate;
@@ -71,13 +70,15 @@ public class StudentFormController implements Initializable {
     @FXML
     private JFXButton updateBtn;
 
+    StudentBOImpl studentBO = new StudentBOImpl();
     StudentDAOImpl studentDAO = new StudentDAOImpl();
 
     @FXML
     void saveBtnOnAction(ActionEvent event) {
         String s=studentDAO.existId(studentIdLbl.getText());
+
         if (s != null){
-            boolean isSaved = studentDAO.save(new Student(studentIdLbl.getText(), studentNameTxt.getText(), StudentAddressTxt.getText(), contactNumberTxt.getText(), birthdatPiker.getValue(), gender.getSelectionModel().getSelectedItem()));
+            boolean isSaved = studentBO.saveStudent(new StudentDTO(studentIdLbl.getText(), studentNameTxt.getText(), StudentAddressTxt.getText(), contactNumberTxt.getText(), birthdatPiker.getValue(), gender.getSelectionModel().getSelectedItem()));
             if (isSaved) {
                 studentTableAddData();
                 Notifications.create()
@@ -92,7 +93,7 @@ public class StudentFormController implements Initializable {
 
     @FXML
     void updateOnAction(ActionEvent event) {
-        boolean isUpdate = studentDAO.update(new Student(studentIdLbl.getText(), studentNameTxt.getText(), StudentAddressTxt.getText(), contactNumberTxt.getText(), birthdatPiker.getValue(), gender.getSelectionModel().getSelectedItem()));
+        boolean isUpdate = studentBO.updateStudent(new StudentDTO(studentIdLbl.getText(), studentNameTxt.getText(), StudentAddressTxt.getText(), contactNumberTxt.getText(), birthdatPiker.getValue(), gender.getSelectionModel().getSelectedItem()));
         if (isUpdate) {
             Notifications.create()
                     .title("Notification !")
@@ -108,7 +109,7 @@ public class StudentFormController implements Initializable {
 
     @FXML
     void deleteBtnOnAction(ActionEvent event) {
-        boolean isDelete = studentDAO.delete(new Student(studentIdLbl.getText(),studentNameTxt.getText(),StudentAddressTxt.getText(),contactNumberTxt.getText(),birthdatPiker.getValue(),gender.getSelectionModel().getSelectedItem()));
+        boolean isDelete = studentBO.deleteStudent(new StudentDTO(studentIdLbl.getText(),studentNameTxt.getText(),StudentAddressTxt.getText(),contactNumberTxt.getText(),birthdatPiker.getValue(),gender.getSelectionModel().getSelectedItem()));
         if (isDelete){
             Notifications.create()
                     .title("Notification !")
@@ -157,6 +158,11 @@ public class StudentFormController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+
+
+
+
         tableListener();
         setCellValues();
         studentTableAddData();
