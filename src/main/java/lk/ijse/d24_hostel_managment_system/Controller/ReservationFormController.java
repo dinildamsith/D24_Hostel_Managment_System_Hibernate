@@ -87,6 +87,14 @@ public class ReservationFormController implements Initializable {
 
     @FXML
     void saveOnAction(ActionEvent event) {
+        String roomTypeId = roomTypeIdComboBox.getSelectionModel().getSelectedItem();
+        RoomDTO roomDTO = roomDAO.search(roomTypeId);
+
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        Room roomUpdate = session.get(Room.class,roomDTO.getRoom_Type_Id());
+
+
 
         Student studentDTO = new Student();
         studentDTO.setStudent_Id(studentIdComboBox.getValue());
@@ -94,6 +102,9 @@ public class ReservationFormController implements Initializable {
         Room room = new Room();
         room.setRoom_Type_Id(roomTypeIdComboBox.getValue());
         room.setRoom_Type(roomTypeLbl.getText());
+//        System.out.println(roomDTO.getRooms_Qty());
+
+
 
         Reservation reservationDTO = new Reservation();
 
@@ -105,8 +116,16 @@ public class ReservationFormController implements Initializable {
        reservationDTO.setStatus(statusComboBox.getValue());
 
 
+       String x = roomDTO.getRooms_Qty();
+       int intTypeQty = Integer.parseInt(x);
+       String updatedRoomQty = String.valueOf(intTypeQty-1);
+       roomUpdate.setRooms_Qty(updatedRoomQty);
+
+
         boolean save = reservationDAO.save(reservationDTO);
         if (save){
+            session.persist(roomUpdate);
+            transaction.commit();
             Notifications.create()
                     .title("Notification !")
                     .text("Reservation Add !!")
