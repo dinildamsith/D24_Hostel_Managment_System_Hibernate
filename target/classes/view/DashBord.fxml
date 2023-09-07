@@ -28,7 +28,7 @@
                   <Font name="System Bold" size="31.0" />
                </font>
                <graphic>
-                  <ImageView fitHeight="47.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="55.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../../../A%20GDSE%202/Icons/50%20x%2050%20Icons/roommate.png" />
                      </image>
@@ -47,7 +47,7 @@
                   </ImageView>
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="logOutBtn" layoutX="55.0" layoutY="691.0" onAction="#logoutBtnOnAction" prefHeight="81.0" prefWidth="213.0" text="Logout" textFill="WHITE">
+            <JFXButton fx:id="logOutBtn" layoutX="51.0" layoutY="712.0" onAction="#logoutBtnOnAction" prefHeight="81.0" prefWidth="213.0" text="Logout" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="31.0" />
                </font>

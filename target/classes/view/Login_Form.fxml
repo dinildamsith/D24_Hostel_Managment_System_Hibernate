@@ -47,7 +47,7 @@
          <font>
             <Font name="System Bold" size="29.0" />
          </font></JFXButton>
-      <JFXTextField focusColor="YELLOW" labelFloat="true" layoutX="238.0" layoutY="380.0" prefHeight="29.0" prefWidth="284.0" promptText="dinil" unFocusColor="WHITE" />
-      <JFXPasswordField focusColor="YELLOW" labelFloat="true" layoutX="239.0" layoutY="430.0" prefHeight="29.0" prefWidth="284.0" promptText="****" unFocusColor="WHITE" />
+      <JFXTextField fx:id="userNameTxt" focusColor="YELLOW" labelFloat="true" layoutX="238.0" layoutY="380.0" prefHeight="29.0" prefWidth="284.0" promptText="dinil" unFocusColor="WHITE" />
+      <JFXPasswordField fx:id="passwordTxt" focusColor="YELLOW" labelFloat="true" layoutX="239.0" layoutY="430.0" prefHeight="29.0" prefWidth="284.0" promptText="****" unFocusColor="WHITE" />
    </children>
 </AnchorPane>
