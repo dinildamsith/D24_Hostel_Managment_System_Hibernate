@@ -26,4 +26,5 @@ public class ReservationTM {
         this.date = date;
         this.status = status;
     }
+
 }

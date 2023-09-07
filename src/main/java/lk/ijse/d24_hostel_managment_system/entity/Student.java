@@ -22,8 +22,9 @@ public class Student {
     private LocalDate birthday;
     private String gender;
 
-    @OneToMany (mappedBy = "student",cascade = CascadeType.ALL,targetEntity = Reservation.class)
-    private List<Reservation>  list = new ArrayList<>();
+    @ToString.Exclude
+    @OneToMany (targetEntity = Reservation.class, mappedBy = "student", cascade = CascadeType.ALL)
+    private List<Reservation> list = new ArrayList<>();
 
     public Student(){
 
@@ -46,5 +47,11 @@ public class Student {
         this.contact = contact;
         this.birthday = birthday;
         this.gender = gender;
+    }
+
+    public Student(String student_id, String contact, String student_name) {
+        this.student_Id=student_id;
+        this.contact=contact;
+        this.student_Name=student_name;
     }
 }

@@ -4,12 +4,16 @@ import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lombok.SneakyThrows;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class DashBordController {
+public class DashBordController implements Initializable {
     @FXML
     private AnchorPane anchorpane2;
 
@@ -23,10 +27,29 @@ public class DashBordController {
     private JFXButton reservationBtn;
 
     @FXML
+    private JFXButton dashBordBtn;
+
+    @FXML
     private JFXButton logOutBtn;
 
     @FXML
     private AnchorPane root;
+
+
+    @SneakyThrows
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/view/dashview.fxml"));
+        root.getChildren().clear();
+        root.getChildren().add(anchorPane);
+    }
+
+    @FXML
+    void dashBordOnAction(ActionEvent event) throws IOException {
+        AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/view/dashview.fxml"));
+        root.getChildren().clear();
+        root.getChildren().add(anchorPane);
+    }
 
 
     @FXML
@@ -61,7 +84,6 @@ public class DashBordController {
     void logoutBtnOnAction(ActionEvent event) {
 
     }
-
 
 
 }

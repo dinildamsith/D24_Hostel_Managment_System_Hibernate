@@ -16,11 +16,11 @@
 
 }
 
+
 #reservationBtn,#roomsBtn,#studentBtn,#logOutBtn{
 
     -fx-background-color: transparent; /* Set transparent background */
     -fx-text-fill:White; /* Text color */
-    -fx-border-color: white; /* Outline color */
     -fx-border-width: 2px; /* Outline width */
     -fx-border-style: solid; /* Outline style */
 

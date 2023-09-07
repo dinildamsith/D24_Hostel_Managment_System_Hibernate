@@ -41,7 +41,11 @@ public class ReservationDAOImpl implements ReservationDAO  {
 
     @Override
     public boolean update(Reservation entity) {
-        return false;
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        session.update(entity);
+        transaction.commit();
+        return true;
     }
 
     @Override
@@ -74,6 +78,16 @@ public class ReservationDAOImpl implements ReservationDAO  {
             return "RE001";  // If no previous student ID is found, start with "S001"
         }
 
+
+    }
+
+    @Override
+    public String getCount() {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Query query = session.createQuery("SELECT COUNT(*) FROM Reservation \n");
+        query.setMaxResults(1);
+        String count = String.valueOf(query.uniqueResult());
+        return count;
 
     }
 }

@@ -24,6 +24,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -71,6 +72,9 @@ public class ReservationFormController implements Initializable {
 
     @FXML
     private Label roomTypeLbl;
+
+    @FXML
+    private JFXButton updateBtn;
 
     @FXML
     private ComboBox<String> statusComboBox;
@@ -195,6 +199,7 @@ public class ReservationFormController implements Initializable {
         setStatusComboBox();
         setCellValues();
         setReservationTableData();
+        tableListener();
 
 
 
@@ -210,6 +215,58 @@ public class ReservationFormController implements Initializable {
        }
 
 
+    public void updateOnAction(ActionEvent actionEvent) {
+        String roomTypeId = roomTypeIdComboBox.getSelectionModel().getSelectedItem();
+        RoomDTO roomDTO = roomDAO.search(roomTypeId);
+
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        Room roomUpdate = session.get(Room.class,roomDTO.getRoom_Type_Id());
+
+
+
+        Student studentDTO = new Student();
+        studentDTO.setStudent_Id(studentIdComboBox.getValue());
+
+        Room room = new Room();
+        room.setRoom_Type_Id(roomTypeIdComboBox.getValue());
+        room.setRoom_Type(roomTypeLbl.getText());
+//        System.out.println(roomDTO.getRooms_Qty());
+
+
+
+        Reservation reservationDTO = new Reservation();
+
+        reservationDTO.setReservation_Id(reservationIdLbl.getText());
+        reservationDTO.setDate(datePicker.getValue());
+        reservationDTO.setRoom(room);
+        reservationDTO.setRoom_Type(roomTypeLbl.getText());
+        reservationDTO.setStudent(studentDTO);
+        reservationDTO.setStatus(statusComboBox.getValue());
+
+        boolean iSUpdate =  reservationDAO.update(reservationDTO);
+        if (iSUpdate){
+            System.out.println("Update");
+        }
+
     }
+    private void tableListener(){
+        reservationTable.getSelectionModel().selectedItemProperty().addListener((ob, oldValue, newValue) -> {
+            if (newValue != null){
+                saveBtn.setVisible(false);
+//                saveBtn.setText("Update Details");
+//                saveBtn.setStyle("-fx-background-color: #f48c06");
+                reservationIdLbl.setText(newValue.getReservation_Id());
+                studentIdComboBox.setValue(newValue.getStudent_Id());
+                roomTypeIdComboBox.setValue(newValue.getRoom_Type_Id());
+                datePicker.setValue(newValue.getDate());
+                statusComboBox.setValue(newValue.getStatus());
+
+
+            }
+        });
+    }
+
+}
 
 

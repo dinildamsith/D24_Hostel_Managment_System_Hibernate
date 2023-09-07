@@ -29,6 +29,8 @@ public class loginFormController {
         stage.centerOnScreen();
         stage.show();
 
+
+
     }
 
 }

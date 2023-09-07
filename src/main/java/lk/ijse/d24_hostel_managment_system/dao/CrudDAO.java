@@ -13,4 +13,5 @@ public interface CrudDAO<T> {
     String existId(String id);
     Object search(String id);
     Object generateNewID();
+    String getCount();
 }

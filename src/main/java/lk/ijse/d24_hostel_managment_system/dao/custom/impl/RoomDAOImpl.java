@@ -86,4 +86,13 @@ public class RoomDAOImpl implements RoomDAO {
     public Object generateNewID() {
         return null;
     }
+
+    @Override
+    public String getCount() {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Query query = session.createQuery("SELECT COUNT(*) FROM Room \n");
+        query.setMaxResults(1);
+        String count = String.valueOf(query.uniqueResult());
+        return count;
+    }
 }
