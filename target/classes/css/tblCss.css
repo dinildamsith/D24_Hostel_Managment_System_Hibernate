@@ -1,0 +1,103 @@
+.table-view{
+    -fx-background-radius: 15;
+    -fx-background-color: balck;
+    -fx-border-radius: 15;
+    -fx-border-width: 3;
+    -fx-border-color: black;
+}
+
+.table-view .column-header-background{
+    -fx-background-color: #C3ACD0;
+    -fx-background-radius: 15;
+}
+
+.table-view .column-header-background .label{
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-family: "Comic Sans MS";
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;
+}
+
+.table-view .table-cell{
+    -fx-text-fill: black;
+    -fx-alignment: center;
+    -fx-background-color: transparent;
+    -fx-border-color: rgba(95, 65, 148, 0.3);
+    -fx-border-width: 0px 3px 0px 0px;
+    -fx-font-family: "Comic Sans MS";
+}
+
+.table-view .table-row-cell{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #338dd0;
+    -fx-background-insets: 0;
+    -fx-background-radius: 1;
+}
+
+.table-view .scroll-bar:vertical{
+    -fx-background-color: transparent;
+}
+
+.table-view .scroll-bar:horizontal{
+    -fx-opacity: 0;
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-padding: 0
+}
+
+.table-view .scroll-bar:vertical .increment-button,
+.table-view .scroll-bar:vertical .decrement-button {
+    -fx-background-color: transparent;
+}
+
+.table-view .scroll-bar:vertical .increment-button,
+.table-view .scroll-bar:vertical .decrement-button {
+    -fx-background-color: transparent;
+}
+
+.table-view .scroll-bar:vertical .thumb{
+    -fx-background-color:  #C3ACD0;
+    -fx-background-radius: 10px;
+}
+.table-view .scroll-bar:vertical .thumb:hover{
+    -fx-opacity: 80%;
+}
+
+.table-view .scroll-bar:vertical .increment-arrow,
+.table-view .scroll-bar:vertical .decrement-arrow {
+    -fx-background-color: transparent;
+}
+
+.table-view > .virtual-flow > .corner{
+    -fx-background-color: transparent;
+}
+
+.EditBtn{
+    -fx-background-color:  #edae49;
+    -fx-text-fill: white;
+    -fx-background-radius: 10px;
+    -fx-alignment: center;
+}
+
+.EditBtn:hover{
+    -fx-opacity: 80%;
+}
+
+.RemoveBtn{
+    -fx-background-color:  #e63946;
+    -fx-text-fill: white;
+    -fx-background-radius: 10px;
+    -fx-alignment: center;
+    -fx-font-weight: 600;
+}
+
+.RemoveBtn:hover{
+    -fx-opacity: 80%;
+}

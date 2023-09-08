@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="808.0" prefWidth="1534.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.d24_hostel_managment_system.Controller.DashBordController">
+<AnchorPane fx:id="dashAchorpane" prefHeight="808.0" prefWidth="1534.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.d24_hostel_managment_system.Controller.DashBordController">
    <children>
       <AnchorPane fx:id="anchorpane2" layoutX="6.0" layoutY="5.0" prefHeight="792.0" prefWidth="326.0" style="-fx-background-color: black; -fx-background-radius: 20px;" stylesheets="@../css/style.css">
          <children>
@@ -76,7 +76,19 @@
                   </ImageView>
                </graphic>
             </JFXButton>
+            <JFXButton fx:id="accBtn" layoutX="18.0" layoutY="581.0" onAction="#accOnActionBtn" prefHeight="81.0" prefWidth="270.0" text="Account" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="31.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="47.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../A%20GDSE%202/Icons/50%20x%2050%20Icons/settings%20(1).png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
          </children></AnchorPane>
-      <AnchorPane fx:id="root" layoutX="339.0" layoutY="5.0" prefHeight="792.0" prefWidth="1188.0" style="-fx-background-radius: 20px;" />
+      <AnchorPane fx:id="root" layoutX="339.0" layoutY="5.0" prefHeight="792.0" prefWidth="1188.0" style="-fx-background-radius: 30px;" />
    </children>
 </AnchorPane>

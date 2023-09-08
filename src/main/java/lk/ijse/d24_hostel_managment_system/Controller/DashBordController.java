@@ -5,6 +5,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lombok.SneakyThrows;
@@ -34,6 +36,12 @@ public class DashBordController implements Initializable {
 
     @FXML
     private AnchorPane root;
+
+    @FXML
+    private JFXButton accBtn;
+
+    @FXML
+    private AnchorPane dashAchorpane;
 
 
     @SneakyThrows
@@ -81,9 +89,25 @@ public class DashBordController implements Initializable {
     }
 
     @FXML
-    void logoutBtnOnAction(ActionEvent event) {
+    void logoutBtnOnAction(ActionEvent event) throws IOException {
+        AnchorPane anchorPane1 = FXMLLoader.load(getClass().getResource("/view/login_Form.fxml"));
+        Stage stage = new Stage();
+        stage.setScene(new Scene(anchorPane1));
+        Stage stage1 = (Stage) dashAchorpane.getScene().getWindow();
+        stage1.close();
+        stage.show();
 
     }
 
+
+    @FXML
+    void accOnActionBtn(ActionEvent event) throws IOException {
+        Stage stage = new Stage();
+        Parent scene = FXMLLoader.load(getClass().getResource("/view/accform.fxml"));
+        stage.setScene(new Scene(scene));
+        stage.show();
+
+
+    }
 
 }

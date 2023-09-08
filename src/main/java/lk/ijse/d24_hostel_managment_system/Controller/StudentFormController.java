@@ -70,42 +70,94 @@ public class StudentFormController implements Initializable {
     @FXML
     private JFXButton updateBtn;
 
+    @FXML
+    private Label studentLbl;
+
     StudentBOImpl studentBO = new StudentBOImpl();
     StudentDAOImpl studentDAO = new StudentDAOImpl();
 
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        tableListener();
+        setCellValues();
+        studentTableAddData();
+        Object o = studentDAO.generateNewID();
+        studentIdLbl.setText(String.valueOf(o));
+        ObservableList<String> items = FXCollections.observableArrayList(
+                "Male", "Female"
+        );
+        gender.setItems(items);
+
+    }
+
     @FXML
     void saveBtnOnAction(ActionEvent event) {
-        String s=studentDAO.existId(studentIdLbl.getText());
 
-        if (s != null){
-            boolean isSaved = studentBO.saveStudent(new StudentDTO(studentIdLbl.getText(), studentNameTxt.getText(), StudentAddressTxt.getText(), contactNumberTxt.getText(), birthdatPiker.getValue(), gender.getSelectionModel().getSelectedItem()));
-            if (isSaved) {
-                studentTableAddData();
-                Notifications.create()
-                        .title("Notification !")
-                        .text("Student Saved !!")
-                        .position(Pos.TOP_CENTER)
-                        .showInformation();
+        String stName = studentNameTxt.getText();
+        String stAddress =StudentAddressTxt.getText();
+        String value = gender.getValue();
+        String contact = contactNumberTxt.getText();
+        String birthday = String.valueOf(birthdatPiker.getValue());
 
-                 }
+
+        if (stName.isEmpty() || stAddress.isEmpty() || value.isEmpty() || contact.isEmpty() || birthday.isEmpty()){
+            Notifications.create()
+                    .title("Notification !")
+                    .text("Input Data !!")
+                    .position(Pos.TOP_CENTER)
+                    .showInformation();
+
+        }else{
+            String s=studentDAO.existId(studentIdLbl.getText());
+
+            if (s != null){
+                boolean isSaved = studentBO.saveStudent(new StudentDTO(studentIdLbl.getText(), studentNameTxt.getText(), StudentAddressTxt.getText(), contactNumberTxt.getText(), birthdatPiker.getValue(), gender.getSelectionModel().getSelectedItem()));
+                if (isSaved) {
+                    studentTableAddData();
+                    Notifications.create()
+                            .title("Notification !")
+                            .text("Student Saved !!")
+                            .position(Pos.TOP_CENTER)
+                            .showInformation();
+
+                }
             }
+        }
+
+
         }
 
     @FXML
     void updateOnAction(ActionEvent event) {
-        boolean isUpdate = studentBO.updateStudent(new StudentDTO(studentIdLbl.getText(), studentNameTxt.getText(), StudentAddressTxt.getText(), contactNumberTxt.getText(), birthdatPiker.getValue(), gender.getSelectionModel().getSelectedItem()));
-        if (isUpdate) {
+
+        String stName = studentNameTxt.getText();
+        String stAddress =StudentAddressTxt.getText();
+        String value = gender.getValue();
+        String contact = contactNumberTxt.getText();
+        String birthday = String.valueOf(birthdatPiker.getValue());
+
+
+        if (stName.isEmpty() || stAddress.isEmpty() || value.isEmpty() || contact.isEmpty() || birthday.isEmpty()){
             Notifications.create()
                     .title("Notification !")
-                    .text("Student Updated !!")
+                    .text("Input Data !!")
                     .position(Pos.TOP_CENTER)
                     .showInformation();
+
+        }else{
+            boolean isUpdate = studentBO.updateStudent(new StudentDTO(studentIdLbl.getText(), studentNameTxt.getText(), StudentAddressTxt.getText(), contactNumberTxt.getText(), birthdatPiker.getValue(), gender.getSelectionModel().getSelectedItem()));
+            if (isUpdate) {
+                Notifications.create()
+                        .title("Notification !")
+                        .text("Student Updated !!")
+                        .position(Pos.TOP_CENTER)
+                        .showInformation();
+            }
         }
+
     }
-
-
-
-
 
     @FXML
     void deleteBtnOnAction(ActionEvent event) {
@@ -123,9 +175,8 @@ public class StudentFormController implements Initializable {
     private void tableListener(){
         studentTable.getSelectionModel().selectedItemProperty().addListener((ob, oldValue, newValue) -> {
             if (newValue != null){
-            saveBtn.setVisible(false);
-//                saveBtn.setText("Update Details");
-//                saveBtn.setStyle("-fx-background-color: #f48c06");
+                saveBtn.setVisible(false);
+                studentLbl.setText("Student Update");
                 studentIdLbl.setText(newValue.getStudent_Id());
                 studentNameTxt.setText(newValue.getStudent_Name());
                 StudentAddressTxt.setText(newValue.getStudent_Address());
@@ -156,22 +207,5 @@ public class StudentFormController implements Initializable {
 
 
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
 
-
-
-
-
-        tableListener();
-        setCellValues();
-        studentTableAddData();
-        Object o = studentDAO.generateNewID();
-        studentIdLbl.setText(String.valueOf(o));
-        ObservableList<String> items = FXCollections.observableArrayList(
-                "Male", "Female"
-        );
-        gender.setItems(items);
-
-    }
 }

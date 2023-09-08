@@ -35,7 +35,6 @@ public class loginFormController {
         LoginBoImpl loginBo = new LoginBoImpl();
         boolean isLogin = loginBo.checkLoginDetails(userNameTxt.getText(),passwordTxt.getText());
 
-        System.out.println(isLogin);
         if (isLogin) {
             AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/view/DashBord.fxml"));
             Stage stage = new Stage();

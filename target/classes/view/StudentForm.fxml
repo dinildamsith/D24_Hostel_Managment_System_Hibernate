@@ -11,9 +11,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="792.0" prefWidth="1187.0" style="-fx-background-color: #cfd8dc;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.d24_hostel_managment_system.Controller.StudentFormController">
+<AnchorPane prefHeight="792.0" prefWidth="1187.0" style="-fx-background-color: #cfd8dc; -fx-background-radius: 20px;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.d24_hostel_managment_system.Controller.StudentFormController">
    <children>
-      <Label layoutX="434.0" layoutY="24.0" text="Manage  Student">
+      <Label fx:id="studentLbl" layoutX="434.0" layoutY="24.0" text="Manage  Student">
          <font>
             <Font name="Comic Sans MS" size="41.0" />
          </font>
@@ -49,7 +49,11 @@
             <JFXTextField fx:id="StudentAddressTxt" layoutX="682.0" layoutY="4.0" prefHeight="29.0" prefWidth="222.0" />
             <JFXTextField fx:id="contactNumberTxt" layoutX="207.0" layoutY="69.0" prefHeight="29.0" prefWidth="222.0" />
             <DatePicker fx:id="birthdatPiker" layoutX="592.0" layoutY="80.0" />
-            <ComboBox fx:id="gender" layoutX="829.0" layoutY="78.0" prefWidth="150.0" />
+            <Label layoutX="843.0" layoutY="76.0" text="Gender :">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
          </children>
       </Group>
       <Label fx:id="studentIdLbl" layoutX="185.0" layoutY="190.0" text="S001">
@@ -57,7 +61,7 @@
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <TableView fx:id="studentTable" layoutX="14.0" layoutY="469.0" prefHeight="309.0" prefWidth="1164.0">
+      <TableView fx:id="studentTable" layoutX="14.0" layoutY="469.0" prefHeight="309.0" prefWidth="1164.0" stylesheets="@../css/tblCss.css">
         <columns>
           <TableColumn fx:id="idColumn" prefWidth="143.0" text="Student Id" />
             <TableColumn fx:id="nameColum" prefWidth="192.0" text="Student Name" />
@@ -82,5 +86,6 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </JFXButton>
+      <ComboBox fx:id="gender" layoutX="989.0" layoutY="332.0" prefWidth="150.0" />
    </children>
 </AnchorPane>

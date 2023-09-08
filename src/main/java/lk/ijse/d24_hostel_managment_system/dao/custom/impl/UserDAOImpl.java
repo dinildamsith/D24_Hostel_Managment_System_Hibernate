@@ -18,4 +18,16 @@ public class UserDAOImpl implements UserDAO {
         return (User) query.getSingleResult();
 
     }
+
+    @Override
+    public boolean pwChange(User user) {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        session.update(user);
+        transaction.commit();
+        return true;
+
+    }
+
+
 }

@@ -80,12 +80,48 @@ public class ReservationFormController implements Initializable {
     private ComboBox<String> statusComboBox;
 
 
+    @FXML
+    private Label reservationLbl;
+
+
+
     StudentDAOImpl studentDAO = new StudentDAOImpl();
     RoomDAOImpl roomDAO = new RoomDAOImpl();
     ReservationDAOImpl reservationDAO = new ReservationDAOImpl();
 
     @FXML
     void deleteBtnOnAction(ActionEvent event) {
+//        String roomTypeId = roomTypeIdComboBox.getSelectionModel().getSelectedItem();
+//        RoomDTO roomDTO = roomDAO.search(roomTypeId);
+//
+//        Session session = FactoryConfiguration.getInstance().getSession();
+//        Transaction transaction = session.beginTransaction();
+//        Room roomUpdate = session.get(Room.class,roomDTO.getRoom_Type_Id());
+        Student studentDTO = new Student();
+        studentDTO.setStudent_Id(studentIdComboBox.getValue());
+
+        Room room = new Room();
+        room.setRoom_Type_Id(roomTypeIdComboBox.getValue());
+        room.setRoom_Type(roomTypeLbl.getText());
+
+
+        Reservation reservationDTO = new Reservation();
+
+        reservationDTO.setReservation_Id(reservationIdLbl.getText());
+        reservationDTO.setDate(datePicker.getValue());
+        reservationDTO.setRoom(room);
+        reservationDTO.setRoom_Type(roomTypeLbl.getText());
+        reservationDTO.setStudent(studentDTO);
+        reservationDTO.setStatus(statusComboBox.getValue());
+
+        boolean iSDelete =  reservationDAO.delete(reservationDTO);
+        if (iSDelete){
+            Notifications.create()
+                    .title("Notification!")
+                    .text("Reservation Deleted!!")
+                    .position(Pos.TOP_CENTER)
+                    .showInformation();
+        }
 
     }
 
@@ -106,7 +142,7 @@ public class ReservationFormController implements Initializable {
         Room room = new Room();
         room.setRoom_Type_Id(roomTypeIdComboBox.getValue());
         room.setRoom_Type(roomTypeLbl.getText());
-//        System.out.println(roomDTO.getRooms_Qty());
+
 
 
 
@@ -137,6 +173,42 @@ public class ReservationFormController implements Initializable {
                     .showInformation();
         }
 
+
+    }
+
+    public void updateOnAction(ActionEvent actionEvent) {
+//        String roomTypeId = roomTypeIdComboBox.getSelectionModel().getSelectedItem();
+//        RoomDTO roomDTO = roomDAO.search(roomTypeId);
+//
+//        Session session = FactoryConfiguration.getInstance().getSession();
+//        Transaction transaction = session.beginTransaction();
+//        Room roomUpdate = session.get(Room.class,roomDTO.getRoom_Type_Id());
+
+        Student studentDTO = new Student();
+        studentDTO.setStudent_Id(studentIdComboBox.getValue());
+
+        Room room = new Room();
+        room.setRoom_Type_Id(roomTypeIdComboBox.getValue());
+        room.setRoom_Type(roomTypeLbl.getText());
+
+        Reservation reservationDTO = new Reservation();
+
+        reservationDTO.setReservation_Id(reservationIdLbl.getText());
+        reservationDTO.setDate(datePicker.getValue());
+        reservationDTO.setRoom(room);
+        reservationDTO.setRoom_Type(roomTypeLbl.getText());
+        reservationDTO.setStudent(studentDTO);
+        reservationDTO.setStatus(statusComboBox.getValue());
+
+        boolean iSUpdate =  reservationDAO.update(reservationDTO);
+        if (iSUpdate){
+            Notifications.create()
+                    .title("Notification!")
+                    .text("Reservation Updated!!")
+                    .position(Pos.TOP_CENTER)
+                    .showInformation();
+
+        }
 
     }
 
@@ -201,9 +273,6 @@ public class ReservationFormController implements Initializable {
         setReservationTableData();
         tableListener();
 
-
-
-
         //Reservation id Set
         Object newId = reservationDAO.generateNewID();
         reservationIdLbl.setText((String) newId);
@@ -215,47 +284,12 @@ public class ReservationFormController implements Initializable {
        }
 
 
-    public void updateOnAction(ActionEvent actionEvent) {
-        String roomTypeId = roomTypeIdComboBox.getSelectionModel().getSelectedItem();
-        RoomDTO roomDTO = roomDAO.search(roomTypeId);
 
-        Session session = FactoryConfiguration.getInstance().getSession();
-        Transaction transaction = session.beginTransaction();
-        Room roomUpdate = session.get(Room.class,roomDTO.getRoom_Type_Id());
-
-
-
-        Student studentDTO = new Student();
-        studentDTO.setStudent_Id(studentIdComboBox.getValue());
-
-        Room room = new Room();
-        room.setRoom_Type_Id(roomTypeIdComboBox.getValue());
-        room.setRoom_Type(roomTypeLbl.getText());
-//        System.out.println(roomDTO.getRooms_Qty());
-
-
-
-        Reservation reservationDTO = new Reservation();
-
-        reservationDTO.setReservation_Id(reservationIdLbl.getText());
-        reservationDTO.setDate(datePicker.getValue());
-        reservationDTO.setRoom(room);
-        reservationDTO.setRoom_Type(roomTypeLbl.getText());
-        reservationDTO.setStudent(studentDTO);
-        reservationDTO.setStatus(statusComboBox.getValue());
-
-        boolean iSUpdate =  reservationDAO.update(reservationDTO);
-        if (iSUpdate){
-            System.out.println("Update");
-        }
-
-    }
     private void tableListener(){
         reservationTable.getSelectionModel().selectedItemProperty().addListener((ob, oldValue, newValue) -> {
             if (newValue != null){
                 saveBtn.setVisible(false);
-//                saveBtn.setText("Update Details");
-//                saveBtn.setStyle("-fx-background-color: #f48c06");
+                reservationLbl.setText("Reservation Update");
                 reservationIdLbl.setText(newValue.getReservation_Id());
                 studentIdComboBox.setValue(newValue.getStudent_Id());
                 roomTypeIdComboBox.setValue(newValue.getRoom_Type_Id());

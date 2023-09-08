@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.Cascade;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -22,8 +23,9 @@ public class Student {
     private LocalDate birthday;
     private String gender;
 
+
     @ToString.Exclude
-    @OneToMany (targetEntity = Reservation.class, mappedBy = "student", cascade = CascadeType.ALL)
+    @OneToMany ( mappedBy = "student",targetEntity = Reservation.class,cascade = CascadeType.REMOVE,orphanRemoval =true)
     private List<Reservation> list = new ArrayList<>();
 
     public Student(){

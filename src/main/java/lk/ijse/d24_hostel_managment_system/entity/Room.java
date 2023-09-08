@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.Cascade;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +22,8 @@ public class Room {
     private String key_Money;
     private String rooms_Qty;
 
-    @OneToMany(mappedBy = "room",cascade = CascadeType.ALL,targetEntity = Reservation.class)
+
+    @OneToMany(mappedBy = "room",targetEntity = Reservation.class,cascade = CascadeType.REMOVE,orphanRemoval =true)
     private List<Reservation> list = new ArrayList<>();
 
     public Room(){

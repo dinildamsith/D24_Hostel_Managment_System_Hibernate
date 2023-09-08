@@ -20,5 +20,15 @@ public class User {
 
         }
 
+        public User(String txt){
+            password=txt;
+        }
 
+
+    public User(String text, String text1) {
+        userName=text;
+        password=text1;
+
+
+    }
 }

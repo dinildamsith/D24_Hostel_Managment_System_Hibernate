@@ -15,11 +15,13 @@ import lk.ijse.d24_hostel_managment_system.dto.RoomDTO;
 import lk.ijse.d24_hostel_managment_system.entity.Room;
 import org.controlsfx.control.Notifications;
 
+import java.awt.*;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class RoomFormController implements Initializable {
+    public javafx.scene.control.Label roomNameLbl;
     @FXML
     private JFXTextField roomTypeIdTxt;
 
@@ -56,7 +58,11 @@ public class RoomFormController implements Initializable {
     @FXML
     private JFXButton updateBtn;
 
-    RoomDAOImpl roomDAO = new RoomDAOImpl();
+
+    @FXML
+    public Label roomLbl;
+
+
     RoomBoImpl roomBo = new RoomBoImpl();
 
     @Override
@@ -75,9 +81,8 @@ public class RoomFormController implements Initializable {
     }
 
     private void roomTableAddData(){
-        ArrayList<Room> all = roomDAO.getAll();
-        System.out.println(all);
-        for (Room room : all){
+        ArrayList<RoomDTO> all = roomBo.getAllRooms();
+        for (RoomDTO room : all){
             roomTable.getItems().add(new RoomDTO(room.getRoom_Type_Id(),room.getRoom_Type(),room.getKey_Money(),room.getRooms_Qty()));
         }
     }
@@ -86,6 +91,7 @@ public class RoomFormController implements Initializable {
         roomTable.getSelectionModel().selectedItemProperty().addListener((ob, oldValue, newValue) ->{
             if (newValue !=null){
                 saveBtn.setVisible(false);
+                roomNameLbl.setText("Room Update");
                 roomTypeIdTxt.setText(newValue.getRoom_Type_Id());
                 roomTypeTxt.setText(newValue.getRoom_Type());
                 keyMoneyTxt.setText(newValue.getKey_Money());
@@ -97,7 +103,18 @@ public class RoomFormController implements Initializable {
 
     @FXML
     void saveBtnOnAction(ActionEvent event) {
-        String id = roomDAO.existId(roomTypeIdTxt.getText());
+        String roomId = roomTypeIdTxt.getText();
+        String roomType = roomTypeTxt.getText();
+        String keyMoney = keyMoneyTxt.getText();
+        String qty = roomQtyTxt.getText();
+
+        if (roomId.isEmpty() || roomType.isEmpty() || keyMoney.isEmpty() || qty.isEmpty()){
+            Notifications.create()
+                    .title("Notification!")
+                    .text("Input Data!!")
+                    .position(Pos.TOP_CENTER)
+                    .showInformation();
+        }else{
             boolean roomSaved = roomBo.saveRoom(new RoomDTO(roomTypeIdTxt.getText(), roomTypeTxt.getText(), keyMoneyTxt.getText(), roomQtyTxt.getText()));
             if (roomSaved) {
                 Notifications.create()
@@ -106,6 +123,9 @@ public class RoomFormController implements Initializable {
                         .position(Pos.TOP_CENTER)
                         .showInformation();
             }
+        }
+
+
 
 
     }
@@ -124,19 +144,36 @@ public class RoomFormController implements Initializable {
 
     @FXML
     void updateOnAction(ActionEvent event) {
-        boolean isUpdate = roomBo.updateRoom(new RoomDTO(roomTypeIdTxt.getText(),roomTypeTxt.getText(),keyMoneyTxt.getText(),roomQtyTxt.getText()));
-        if (isUpdate){
+
+        String roomId = roomTypeIdTxt.getText();
+        String roomType = roomTypeTxt.getText();
+        String keyMoney = keyMoneyTxt.getText();
+        String qty = roomQtyTxt.getText();
+
+        if (roomId.isEmpty() || roomType.isEmpty() || keyMoney.isEmpty() || qty.isEmpty()){
             Notifications.create()
-                    .title("Notification !")
-                    .text("Room Updated!!")
+                    .title("Notification!")
+                    .text("Input Data!!")
                     .position(Pos.TOP_CENTER)
                     .showInformation();
+        }else{
+            boolean isUpdate = roomBo.updateRoom(new RoomDTO(roomTypeIdTxt.getText(),roomTypeTxt.getText(),keyMoneyTxt.getText(),roomQtyTxt.getText()));
+            if (isUpdate){
+                Notifications.create()
+                        .title("Notification !")
+                        .text("Room Updated!!")
+                        .position(Pos.TOP_CENTER)
+                        .showInformation();
+
+              }
+          }
 
         }
+
     }
 
 
-}
+
 
 
 

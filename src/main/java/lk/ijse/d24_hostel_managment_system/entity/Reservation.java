@@ -22,11 +22,11 @@ public class Reservation {
     private String status;
 
    // @JoinColumn(name = "student_id")
-    @ManyToOne ( fetch = FetchType.EAGER)
+    @ManyToOne (fetch = FetchType.EAGER,cascade = CascadeType.DETACH)
     private Student student;
 
   // @JoinColumn(name = "room_id")
-    @ManyToOne ( fetch = FetchType.EAGER)
+    @ManyToOne (fetch = FetchType.EAGER,cascade = CascadeType.DETACH)//CascadeType.Remove,orphanRemoval =true
     private Room room;
 
     public Reservation(String text, String text1, LocalDate value, String selectedItem, String selectedItem1, String selectedItem2) {

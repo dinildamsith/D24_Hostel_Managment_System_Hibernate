@@ -12,7 +12,14 @@ public class RoomBoImpl implements RoomBO<RoomDTO> {
     RoomDAOImpl roomDAO = new RoomDAOImpl();
     @Override
     public ArrayList<RoomDTO> getAllRooms() {
-        return null;
+
+        ArrayList<Room> all = roomDAO.getAll();
+        ArrayList<RoomDTO> allRooms = new ArrayList<>();
+        for (Room room: all){
+            allRooms.add(new RoomDTO(room.getRoom_Type_Id(),room.getRoom_Type(),room.getKey_Money(),room.getRooms_Qty()));
+        }
+
+        return allRooms;
     }
 
     @Override
@@ -35,7 +42,8 @@ public class RoomBoImpl implements RoomBO<RoomDTO> {
 
     @Override
     public String existIdRoom(String id) {
-        return null;
+        return roomDAO.existId(id);
+
     }
 
     @Override

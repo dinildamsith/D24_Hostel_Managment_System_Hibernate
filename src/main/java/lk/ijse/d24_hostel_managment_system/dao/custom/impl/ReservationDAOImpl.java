@@ -50,7 +50,11 @@ public class ReservationDAOImpl implements ReservationDAO  {
 
     @Override
     public boolean delete(Reservation entity) {
-        return false;
+        Session session =FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        session.remove(entity);
+        transaction.commit();
+        return true;
     }
 
     @Override

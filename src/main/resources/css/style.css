@@ -15,6 +15,13 @@
 
 
 }
+#updateBtn{
+    -fx-text-fill:Black;
+    -fx-background-color: transparent; /* Set transparent background */
+    -fx-text-fill:gray; /* Text color */
+    -fx-border-width: 2px; /* Outline width */
+    -fx-border-style: solid; /* Outline style */
+}
 
 
 #reservationBtn,#roomsBtn,#studentBtn,#logOutBtn{
@@ -32,4 +39,24 @@
 /*    -fx-border-color: #000000; !* Border color (black in this example) *!*/
 /*    -fx-border-width: 2px;     !* Border width (2 pixels in this example) *!*/
 /*    -fx-border-radius: 5px;    !* Border radius (rounded corners, adjust as needed) *!*/
+/*}*/
+
+
+/*!* Style the table *!*/
+/*#studentTable{*/
+/*    -fx-background-color: red;*/
+/*    -fx-padding: 10px;*/
+/*}*/
+
+/*!* Style the table headers *!*/
+/*#studentTable {*/
+/*    -fx-background-color: pink;*/
+/*    -fx-text-fill: yellow;*/
+/*}*/
+
+/*!* Style the table cells *!*/
+/*.my-table .table-cell {*/
+/*    -fx-background-color: pink;*/
+/*    -fx-text-fill: #333;*/
+/*    -fx-alignment: center;*/
 /*}*/
