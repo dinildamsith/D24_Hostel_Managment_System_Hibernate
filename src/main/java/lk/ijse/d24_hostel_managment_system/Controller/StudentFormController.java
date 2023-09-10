@@ -79,6 +79,10 @@ public class StudentFormController implements Initializable {
     private Label studentLbl;
 
 
+    @FXML
+    private JFXButton refreshBtn;
+
+
     StudentDAO studentDAO = (StudentDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.STUDENT);
 //    StudentDAOImpl studentDAO = new StudentDAOImpl();
 
@@ -87,16 +91,13 @@ public class StudentFormController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        deleteBtn.setVisible(false);
         tableListener();
         setCellValues();
         studentTableAddData();
+        setGenderComboboxAddItems();
         Object o = studentBO.generateNewIDStudent();
         studentIdLbl.setText(String.valueOf(o));
-        ObservableList<String> items = FXCollections.observableArrayList(
-                "Male", "Female"
-        );
-        gender.setItems(items);
 
     }
 
@@ -127,7 +128,7 @@ public class StudentFormController implements Initializable {
                         if (s != null) {
                             boolean isSaved = studentBO.saveStudent(new StudentDTO(studentIdLbl.getText(), studentNameTxt.getText(), StudentAddressTxt.getText(), contactNumberTxt.getText(), birthdatPiker.getValue(), gender.getSelectionModel().getSelectedItem()));
                             if (isSaved) {
-                                studentTableAddData();
+                                clearTextFields();
                                 Notifications.create()
                                         .title("Notification !")
                                         .text("Student Saved !!")
@@ -160,10 +161,6 @@ public class StudentFormController implements Initializable {
 
     }
 
-
-
-
-
     @FXML
     void updateOnAction(ActionEvent event) {
 
@@ -187,6 +184,7 @@ public class StudentFormController implements Initializable {
                     } else {
                         boolean isUpdate = studentBO.updateStudent(new StudentDTO(studentIdLbl.getText(), studentNameTxt.getText(), StudentAddressTxt.getText(), contactNumberTxt.getText(), birthdatPiker.getValue(), gender.getSelectionModel().getSelectedItem()));
                         if (isUpdate) {
+                            clearTextFields();
                             Notifications.create()
                                     .title("Notification !")
                                     .text("Student Updated !!")
@@ -222,6 +220,7 @@ public class StudentFormController implements Initializable {
     void deleteBtnOnAction(ActionEvent event) {
         boolean isDelete = studentBO.deleteStudent(new StudentDTO(studentIdLbl.getText(),studentNameTxt.getText(),StudentAddressTxt.getText(),contactNumberTxt.getText(),birthdatPiker.getValue(),gender.getSelectionModel().getSelectedItem()));
         if (isDelete){
+            clearTextFields();
             Notifications.create()
                     .title("Notification !")
                     .text("Student Delete !!")
@@ -235,6 +234,7 @@ public class StudentFormController implements Initializable {
         studentTable.getSelectionModel().selectedItemProperty().addListener((ob, oldValue, newValue) -> {
             if (newValue != null){
                 saveBtn.setVisible(false);
+                deleteBtn.setVisible(true);
                 studentLbl.setText("Student Update");
                 studentIdLbl.setText(newValue.getStudent_Id());
                 studentNameTxt.setText(newValue.getStudent_Name());
@@ -263,8 +263,18 @@ public class StudentFormController implements Initializable {
         }
     }
 
+    private void setGenderComboboxAddItems(){
+        ObservableList<String> items = FXCollections.observableArrayList(
+                "Male", "Female"
+        );
+        gender.setItems(items);
 
+    }
 
-
+    private void clearTextFields(){
+        studentNameTxt.clear();
+        StudentAddressTxt.clear();
+        contactNumberTxt.clear();
+    }
 
 }

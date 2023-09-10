@@ -43,6 +43,7 @@ public class AccformController {
     }else{
             boolean update = userDAO.pwChange(new User(userNameTxt.getText(),newPwTxt.getText()));
             if (update){
+
                 Notifications.create()
                         .title("Notification !")
                         .text("Change Password Sussefuly !!")

@@ -24,28 +24,38 @@
                <children>
                     <Group layoutX="70.0" layoutY="-7.0">
                         <children>
-                            <Label layoutX="-35.0" layoutY="1.0" text="Room Type Id :">
-                                <font>
-                                    <Font name="System Bold" size="24.0" />
-                                </font>
-                            </Label>
-                            <Label layoutX="473.0" layoutY="1.0" text="Room Type :">
-                                <font>
-                                    <Font name="System Bold" size="24.0" />
-                                </font>
-                            </Label>
-                            <Label layoutX="-35.0" layoutY="77.0" text="Key Money     :">
-                                <font>
-                                    <Font name="System Bold" size="24.0" />
-                                </font>
-                            </Label>
-                            <Label layoutX="473.0" layoutY="76.0" text="Rooms Qty  :">
-                                <font>
-                                    <Font name="System Bold" size="24.0" />
-                                </font>
-                            </Label>
-                        <JFXTextField fx:id="roomTypeIdTxt" layoutX="147.0" prefHeight="29.0" prefWidth="237.0" />
-                        <JFXTextField fx:id="keyMoneyTxt" layoutX="141.0" layoutY="75.0" prefHeight="29.0" prefWidth="237.0" />
+                        <AnchorPane fx:id="formAnchroPnae" layoutX="-133.0" layoutY="-87.0" prefHeight="304.0" prefWidth="1145.0" stylesheets="@../css/anchorpane.css">
+                           <children>
+                                  <Label layoutX="78.0" layoutY="57.0" text="Room Type Id :">
+                                      <font>
+                                          <Font name="System Bold" size="24.0" />
+                                      </font>
+                                  </Label>
+                              <JFXTextField fx:id="roomTypeIdTxt" focusColor="BLACK" layoutX="258.0" layoutY="57.0" prefHeight="29.0" prefWidth="237.0" stylesheets="@../css/formTxt.css" />
+                                  <Label layoutX="78.0" layoutY="135.0" text="Key Money     :">
+                                      <font>
+                                          <Font name="System Bold" size="24.0" />
+                                      </font>
+                                  </Label>
+                              <JFXTextField fx:id="keyMoneyTxt" focusColor="BLACK" layoutX="253.0" layoutY="135.0" prefHeight="29.0" prefWidth="237.0" stylesheets="@../css/formTxt.css" />
+                                  <Label layoutX="604.0" layoutY="62.0" text="Room Type :">
+                                      <font>
+                                          <Font name="System Bold" size="24.0" />
+                                      </font>
+                                  </Label>
+                                  <Label layoutX="603.0" layoutY="141.0" text="Rooms Qty  :">
+                                      <font>
+                                          <Font name="System Bold" size="24.0" />
+                                      </font>
+                                  </Label>
+                              <JFXTextField fx:id="roomQtyTxt" focusColor="BLACK" layoutX="757.0" layoutY="141.0" prefHeight="29.0" prefWidth="237.0" stylesheets="@../css/formTxt.css" />
+                                <JFXButton fx:id="deleteBtn" layoutX="657.0" layoutY="259.0" onAction="#deleteBtnOnAction" prefHeight="31.0" prefWidth="336.0" style="-fx-background-color: #DC143C;" text="Delete">
+                                    <font>
+                                        <Font name="System Bold" size="15.0" />
+                                    </font>
+                                </JFXButton>
+                           </children>
+                        </AnchorPane>
                         </children>
                     </Group>
                </children>
@@ -64,23 +74,17 @@
             <URL value="@../css/tblCss.css" />
          </stylesheets>
         </TableView>
-      <JFXButton fx:id="updateBtn" layoutX="773.0" layoutY="381.0" onAction="#updateOnAction" prefHeight="31.0" prefWidth="336.0" style="-fx-background-color: orange;" text="Update">
+      <JFXButton fx:id="updateBtn" layoutX="679.0" layoutY="374.0" onAction="#updateOnAction" prefHeight="31.0" prefWidth="336.0" style="-fx-background-color: orange;" text="Update">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </JFXButton>
-        <JFXButton fx:id="saveBtn" layoutX="773.0" layoutY="381.0" onAction="#saveBtnOnAction" prefHeight="31.0" prefWidth="336.0" style="-fx-background-color: #1E90FF;" text="Save">
+        <JFXButton fx:id="saveBtn" layoutX="679.0" layoutY="374.0" onAction="#saveBtnOnAction" prefHeight="31.0" prefWidth="336.0" style="-fx-background-color: #1E90FF;" text="Save">
             <font>
                 <Font name="System Bold" size="15.0" />
             </font>
         </JFXButton>
-        <JFXButton fx:id="deleteBtn" layoutX="773.0" layoutY="422.0" onAction="#deleteBtnOnAction" prefHeight="31.0" prefWidth="336.0" style="-fx-background-color: #DC143C;" text="Delete">
-            <font>
-                <Font name="System Bold" size="15.0" />
-            </font>
-        </JFXButton>
-      <JFXTextField fx:id="roomTypeTxt" layoutX="785.0" layoutY="243.0" prefHeight="29.0" prefWidth="237.0" />
-      <JFXTextField fx:id="roomQtyTxt" layoutX="788.0" layoutY="314.0" prefHeight="29.0" prefWidth="237.0" />
+      <JFXTextField fx:id="roomTypeTxt" focusColor="BLACK" layoutX="778.0" layoutY="216.0" prefHeight="29.0" prefWidth="237.0" stylesheets="@../css/formTxt.css" />
     </children>
 
 </AnchorPane>

@@ -83,11 +83,15 @@ public class ReservationFormController implements Initializable {
     private JFXButton updateBtn;
 
     @FXML
+    private JFXButton refreshBtn;
+
+    @FXML
     private ComboBox<String> statusComboBox;
 
 
     @FXML
     private Label reservationLbl;
+
 
 
 
@@ -97,6 +101,27 @@ public class ReservationFormController implements Initializable {
     ReservationBO reservationBO = (ReservationBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.RESERVATION);
     StudentDAO studentDAO = (StudentDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.STUDENT);
     RoomDAOImpl roomDAO = new RoomDAOImpl();
+
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        setIdsStudentIdComboBox();
+        setIdsRoomTypeIdComboBox();
+        setStatusComboBox();
+        setCellValues();
+        setReservationTableData();
+        tableListener();
+        deleteBtn.setVisible(false);
+
+        //Reservation id Set
+        Object newId = reservationBO.generateNewReservationID();
+        reservationIdLbl.setText((String) newId);
+
+
+
+
+
+    }
 
 
 
@@ -286,24 +311,7 @@ public class ReservationFormController implements Initializable {
     }
 
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        setIdsStudentIdComboBox();
-        setIdsRoomTypeIdComboBox();
-        setStatusComboBox();
-        setCellValues();
-        setReservationTableData();
-        tableListener();
 
-        //Reservation id Set
-        Object newId = reservationBO.generateNewReservationID();
-        reservationIdLbl.setText((String) newId);
-
-
-
-
-
-       }
 
 
 
@@ -311,6 +319,7 @@ public class ReservationFormController implements Initializable {
         reservationTable.getSelectionModel().selectedItemProperty().addListener((ob, oldValue, newValue) -> {
             if (newValue != null){
                 saveBtn.setVisible(false);
+                deleteBtn.setVisible(true);
                 reservationLbl.setText("Reservation Update");
                 reservationIdLbl.setText(newValue.getReservation_Id());
                 studentIdComboBox.setValue(newValue.getStudent_Id());
@@ -323,6 +332,9 @@ public class ReservationFormController implements Initializable {
         });
     }
 
+    public void refreshOnAction(ActionEvent actionEvent) {
+        setReservationTableData();
+    }
 }
 
 

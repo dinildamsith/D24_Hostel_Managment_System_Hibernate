@@ -1,0 +1,21 @@
+/* CSS stylesheet */
+.text-field {
+    -fx-text-fill: #333333; /* Text color */
+    -fx-font-family: "Comic Sans MS"; /* Font family */
+    -fx-font-size: 14px; /* Font size */
+    -fx-border-width: 2px; /* Border width */
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+/* Hover effect */
+
+
+/* Focus effect */
+.text-field:focused {
+    -fx-border-color: white;
+}
+
+
+/*//////////////////////////////////////////////*/
+

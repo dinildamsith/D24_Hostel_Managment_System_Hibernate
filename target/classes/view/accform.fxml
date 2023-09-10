@@ -20,8 +20,8 @@
             <Font name="Arial Black" size="23.0" />
          </font>
       </Label>
-      <JFXTextField fx:id="newPwTxt" layoutX="254.0" layoutY="350.0" prefHeight="29.0" prefWidth="211.0" />
-      <Label layoutX="26.0" layoutY="349.0" text="New Password">
+      <JFXTextField fx:id="newPwTxt" focusColor="BLACK" layoutX="236.0" layoutY="342.0" prefHeight="29.0" prefWidth="211.0" stylesheets="@../css/formTxt.css" />
+      <Label layoutX="26.0" layoutY="349.0" text="New Password   :">
          <font>
             <Font name="Arial Black" size="22.0" />
          </font>
@@ -35,11 +35,11 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <Label layoutX="26.0" layoutY="301.0" text="User Name">
+      <Label layoutX="26.0" layoutY="301.0" text="User Name         :">
          <font>
             <Font name="Arial Black" size="22.0" />
          </font>
       </Label>
-      <JFXTextField fx:id="userNameTxt" layoutX="254.0" layoutY="302.0" prefHeight="29.0" prefWidth="211.0" />
+      <JFXTextField fx:id="userNameTxt" focusColor="BLACK" layoutX="235.0" layoutY="294.0" prefHeight="29.0" prefWidth="211.0" stylesheets="@../css/formTxt.css" />
    </children>
 </AnchorPane>

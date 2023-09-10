@@ -64,6 +64,9 @@ public class RoomFormController implements Initializable {
 
 
     @FXML
+    private JFXButton refreshBtn;
+
+    @FXML
     public Label roomLbl;
 
 
@@ -72,37 +75,10 @@ public class RoomFormController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        deleteBtn.setVisible(false);
         roomTableAddData();
         setCellValues();
         tableListener();
-    }
-
-    private void setCellValues() {
-        roomTypeIdColumn.setCellValueFactory(new PropertyValueFactory<>("room_Type_Id"));
-        roomTypeColumn.setCellValueFactory(new PropertyValueFactory<>("room_Type"));
-        keyMoneyColumn.setCellValueFactory(new PropertyValueFactory<>("key_Money"));
-        roomQtyColumn.setCellValueFactory(new PropertyValueFactory<>("rooms_Qty"));
-
-    }
-
-    private void roomTableAddData(){
-        ArrayList<RoomDTO> all =roomBO.getAllRooms();
-        for (RoomDTO room : all){
-            roomTable.getItems().add(new RoomDTO(room.getRoom_Type_Id(),room.getRoom_Type(),room.getKey_Money(),room.getRooms_Qty()));
-        }
-    }
-
-    private void  tableListener(){
-        roomTable.getSelectionModel().selectedItemProperty().addListener((ob, oldValue, newValue) ->{
-            if (newValue !=null){
-                saveBtn.setVisible(false);
-                roomNameLbl.setText("Room Update");
-                roomTypeIdTxt.setText(newValue.getRoom_Type_Id());
-                roomTypeTxt.setText(newValue.getRoom_Type());
-                keyMoneyTxt.setText(newValue.getKey_Money());
-                roomQtyTxt.setText(newValue.getRooms_Qty());
-            }
-        });
     }
 
 
@@ -130,6 +106,7 @@ public class RoomFormController implements Initializable {
                 try {
                     boolean roomSaved = roomBO.saveRoom(new RoomDTO(roomTypeIdTxt.getText(), roomTypeTxt.getText(), keyMoneyTxt.getText(), roomQtyTxt.getText()));
                     if (roomSaved) {
+                        clearTextFields();
                         Notifications.create()
                                 .title("Notification!")
                                 .text("Room Saved!!")
@@ -172,6 +149,7 @@ public class RoomFormController implements Initializable {
     void deleteBtnOnAction(ActionEvent event) {
         boolean isDeleted = roomBO.deleteRoom(new RoomDTO(roomTypeIdTxt.getText(),roomTypeTxt.getText(),keyMoneyTxt.getText(),roomQtyTxt.getText()));
         if (isDeleted){
+            clearTextFields();
             Notifications.create()
                     .title("Notification !")
                     .text("Room Deleted !!")
@@ -201,6 +179,7 @@ public class RoomFormController implements Initializable {
                 } else {
                     boolean isUpdate = roomBO.updateRoom(new RoomDTO(roomTypeIdTxt.getText(), roomTypeTxt.getText(), keyMoneyTxt.getText(), roomQtyTxt.getText()));
                     if (isUpdate) {
+                        clearTextFields();
                         Notifications.create()
                                 .title("Notification !")
                                 .text("Room Updated!!")
@@ -232,7 +211,42 @@ public class RoomFormController implements Initializable {
         }
     }
 
+    private void setCellValues() {
+        roomTypeIdColumn.setCellValueFactory(new PropertyValueFactory<>("room_Type_Id"));
+        roomTypeColumn.setCellValueFactory(new PropertyValueFactory<>("room_Type"));
+        keyMoneyColumn.setCellValueFactory(new PropertyValueFactory<>("key_Money"));
+        roomQtyColumn.setCellValueFactory(new PropertyValueFactory<>("rooms_Qty"));
+
     }
+
+    private void roomTableAddData(){
+        ArrayList<RoomDTO> all =roomBO.getAllRooms();
+        for (RoomDTO room : all){
+            roomTable.getItems().add(new RoomDTO(room.getRoom_Type_Id(),room.getRoom_Type(),room.getKey_Money(),room.getRooms_Qty()));
+        }
+    }
+
+    private void  tableListener(){
+        roomTable.getSelectionModel().selectedItemProperty().addListener((ob, oldValue, newValue) ->{
+            if (newValue !=null){
+                deleteBtn.setVisible(true);
+                saveBtn.setVisible(false);
+                roomNameLbl.setText("Room Update");
+                roomTypeIdTxt.setText(newValue.getRoom_Type_Id());
+                roomTypeTxt.setText(newValue.getRoom_Type());
+                keyMoneyTxt.setText(newValue.getKey_Money());
+                roomQtyTxt.setText(newValue.getRooms_Qty());
+            }
+        });
+    }
+
+    private void clearTextFields(){
+        roomTypeIdTxt.clear();
+        roomTypeTxt.clear();
+        roomQtyTxt.clear();
+        keyMoneyTxt.clear();
+    }
+}
 
 
 

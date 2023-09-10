@@ -13,54 +13,58 @@
 
 <AnchorPane prefHeight="792.0" prefWidth="1187.0" style="-fx-background-color: #cfd8dc; -fx-background-radius: 20px;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.d24_hostel_managment_system.Controller.StudentFormController">
    <children>
+      <AnchorPane fx:id="formAnchroPnae" layoutX="22.0" layoutY="119.0" prefHeight="342.0" prefWidth="1140.0" stylesheets="@../css/anchorpane.css">
+         <children>
+            <Label fx:id="studentIdLbl" layoutX="175.0" layoutY="60.0" text="S001">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
       <Label fx:id="studentLbl" layoutX="434.0" layoutY="24.0" text="Manage  Student">
          <font>
             <Font name="Comic Sans MS" size="41.0" />
          </font>
       </Label>
-      <Label layoutX="43.0" layoutY="187.0" text="Student Id :">
+      <Label layoutX="53.0" layoutY="175.0" text="Student Id :">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
       <Group layoutX="43.0" layoutY="251.0">
          <children>
-            <Label text="Student Name    :">
+            <Label layoutX="9.0" layoutY="-27.0" text="Student Name    :">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
             </Label>
-            <Label layoutX="473.0" layoutY="1.0" text="Student Address :">
+            <Label layoutX="473.0" layoutY="-28.0" text="Student Address :">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
             </Label>
-            <Label layoutY="76.0" text="Contact Number :">
+            <Label layoutX="6.0" layoutY="29.0" text="Contact Number :">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
             </Label>
-            <Label layoutX="473.0" layoutY="76.0" text="BirthDay :">
+            <Label layoutX="473.0" layoutY="38.0" text="BirthDay :">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
             </Label>
-            <JFXTextField fx:id="studentNameTxt" layoutX="209.0" layoutY="4.0" prefHeight="29.0" prefWidth="222.0" />
-            <JFXTextField fx:id="StudentAddressTxt" layoutX="682.0" layoutY="4.0" prefHeight="29.0" prefWidth="222.0" />
-            <JFXTextField fx:id="contactNumberTxt" layoutX="207.0" layoutY="69.0" prefHeight="29.0" prefWidth="222.0" />
-            <DatePicker fx:id="birthdatPiker" layoutX="592.0" layoutY="80.0" />
-            <Label layoutX="843.0" layoutY="76.0" text="Gender :">
+            <JFXTextField fx:id="studentNameTxt" focusColor="BLACK" layoutX="213.0" layoutY="-28.0" prefHeight="29.0" prefWidth="222.0" stylesheets="@../css/formTxt.css" />
+            <JFXTextField fx:id="StudentAddressTxt" focusColor="BLACK" layoutX="679.0" layoutY="-28.0" prefHeight="29.0" prefWidth="222.0" stylesheets="@../css/formTxt.css" />
+            <JFXTextField fx:id="contactNumberTxt" focusColor="BLACK" layoutX="211.0" layoutY="30.0" prefHeight="29.0" prefWidth="222.0" stylesheets="@../css/formTxt.css" />
+            <DatePicker fx:id="birthdatPiker" layoutX="592.0" layoutY="40.0" />
+            <Label layoutX="843.0" layoutY="38.0" text="Gender :">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
             </Label>
          </children>
       </Group>
-      <Label fx:id="studentIdLbl" layoutX="185.0" layoutY="190.0" text="S001">
-         <font>
-            <Font name="System Bold" size="20.0" />
-         </font>
-      </Label>
       <TableView fx:id="studentTable" layoutX="14.0" layoutY="469.0" prefHeight="309.0" prefWidth="1164.0" stylesheets="@../css/tblCss.css">
         <columns>
           <TableColumn fx:id="idColumn" prefWidth="143.0" text="Student Id" />
@@ -71,21 +75,21 @@
             <TableColumn fx:id="genderColumn" prefWidth="131.0" text="Gender" />
         </columns>
       </TableView>
-      <JFXButton fx:id="updateBtn" layoutX="821.0" layoutY="386.0" onAction="#updateOnAction" prefHeight="31.0" prefWidth="336.0" style="-fx-background-color: orange;" text="Update">
+      <JFXButton fx:id="updateBtn" layoutX="797.0" layoutY="362.0" onAction="#updateOnAction" prefHeight="31.0" prefWidth="336.0" style="-fx-background-color: orange;" text="Update">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="saveBtn" layoutX="821.0" layoutY="386.0" onAction="#saveBtnOnAction" prefHeight="31.0" prefWidth="336.0" style="-fx-background-color: #1E90FF;" text="Save">
+      <JFXButton fx:id="saveBtn" layoutX="797.0" layoutY="362.0" onAction="#saveBtnOnAction" prefHeight="31.0" prefWidth="336.0" style="-fx-background-color: #1E90FF;" text="Save">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="deleteBtn" layoutX="821.0" layoutY="425.0" onAction="#deleteBtnOnAction" prefHeight="31.0" prefWidth="336.0" style="-fx-background-color: #DC143C;" text="Delete">
+      <JFXButton fx:id="deleteBtn" layoutX="797.0" layoutY="404.0" onAction="#deleteBtnOnAction" prefHeight="31.0" prefWidth="336.0" style="-fx-background-color: #DC143C;" text="Delete">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </JFXButton>
-      <ComboBox fx:id="gender" layoutX="989.0" layoutY="332.0" prefWidth="150.0" />
+      <ComboBox fx:id="gender" layoutX="989.0" layoutY="292.0" prefWidth="150.0" />
    </children>
 </AnchorPane>
