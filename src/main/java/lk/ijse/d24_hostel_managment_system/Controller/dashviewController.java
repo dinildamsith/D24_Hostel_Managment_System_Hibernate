@@ -11,6 +11,11 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
+import lk.ijse.d24_hostel_managment_system.dao.DAOFactory;
+import lk.ijse.d24_hostel_managment_system.dao.custom.QueryDAO;
+import lk.ijse.d24_hostel_managment_system.dao.custom.ReservationDAO;
+import lk.ijse.d24_hostel_managment_system.dao.custom.RoomDAO;
+import lk.ijse.d24_hostel_managment_system.dao.custom.StudentDAO;
 import lk.ijse.d24_hostel_managment_system.dao.custom.impl.QueryDAOImpl;
 import lk.ijse.d24_hostel_managment_system.dao.custom.impl.ReservationDAOImpl;
 import lk.ijse.d24_hostel_managment_system.dao.custom.impl.RoomDAOImpl;
@@ -46,9 +51,12 @@ public class dashviewController implements Initializable {
         setCellValues();
         tableAddData();
 
-        StudentDAOImpl studentDAO = new StudentDAOImpl();
-        ReservationDAOImpl reservationDAO = new ReservationDAOImpl();
-        RoomDAOImpl roomDAO = new RoomDAOImpl();
+//        StudentDAOImpl studentDAO = new StudentDAOImpl();
+//        ReservationDAOImpl reservationDAO = new ReservationDAOImpl();
+//        RoomDAOImpl roomDAO = new RoomDAOImpl();
+        StudentDAO studentDAO = (StudentDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.STUDENT);
+        ReservationDAO reservationDAO = (ReservationDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.RESERVATION);
+        RoomDAO roomDAO = (RoomDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.ROOM);
 
         studentCount.setText(studentDAO.getCount());
         resversionCount.setText(reservationDAO.getCount());
@@ -67,7 +75,8 @@ public class dashviewController implements Initializable {
     }
 
     private void tableAddData(){
-        QueryDAOImpl queryDAO =  new QueryDAOImpl();
+        QueryDAO queryDAO = (QueryDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.QUERY);
+//        QueryDAOImpl queryDAO =  new QueryDAOImpl();
         List<Student> unpay = queryDAO.unPaidPayments();
         ArrayList<Student> all = new ArrayList<>();
         for (Student student :unpay)

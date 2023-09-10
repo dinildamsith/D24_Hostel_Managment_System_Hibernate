@@ -10,10 +10,15 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import lk.ijse.d24_hostel_managment_system.bo.BOFactory;
+import lk.ijse.d24_hostel_managment_system.bo.custom.StudentBO;
 import lk.ijse.d24_hostel_managment_system.bo.custom.impl.StudentBOImpl;
+import lk.ijse.d24_hostel_managment_system.dao.DAOFactory;
+import lk.ijse.d24_hostel_managment_system.dao.custom.StudentDAO;
 import lk.ijse.d24_hostel_managment_system.dao.custom.impl.StudentDAOImpl;
 import lk.ijse.d24_hostel_managment_system.dto.StudentDTO;
 import lk.ijse.d24_hostel_managment_system.entity.Student;
+import lk.ijse.d24_hostel_managment_system.utill.Regex;
 import org.controlsfx.control.Notifications;
 
 import java.net.URL;
@@ -73,8 +78,11 @@ public class StudentFormController implements Initializable {
     @FXML
     private Label studentLbl;
 
-    StudentBOImpl studentBO = new StudentBOImpl();
-    StudentDAOImpl studentDAO = new StudentDAOImpl();
+
+    StudentDAO studentDAO = (StudentDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.STUDENT);
+//    StudentDAOImpl studentDAO = new StudentDAOImpl();
+
+    StudentBO studentBO = (StudentBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.STUDENT);
 
 
     @Override
@@ -83,7 +91,7 @@ public class StudentFormController implements Initializable {
         tableListener();
         setCellValues();
         studentTableAddData();
-        Object o = studentDAO.generateNewID();
+        Object o = studentBO.generateNewIDStudent();
         studentIdLbl.setText(String.valueOf(o));
         ObservableList<String> items = FXCollections.observableArrayList(
                 "Male", "Female"
@@ -96,38 +104,65 @@ public class StudentFormController implements Initializable {
     void saveBtnOnAction(ActionEvent event) {
 
         String stName = studentNameTxt.getText();
-        String stAddress =StudentAddressTxt.getText();
+        String stAddress = StudentAddressTxt.getText();
         String value = gender.getValue();
         String contact = contactNumberTxt.getText();
         String birthday = String.valueOf(birthdatPiker.getValue());
 
 
-        if (stName.isEmpty() || stAddress.isEmpty() || value.isEmpty() || contact.isEmpty() || birthday.isEmpty()){
-            Notifications.create()
-                    .title("Notification !")
-                    .text("Input Data !!")
-                    .position(Pos.TOP_CENTER)
-                    .showInformation();
+        if (Regex.getNamePattern().matcher(studentNameTxt.getText()).matches()) {
+            if (Regex.getAddressPattern().matcher(StudentAddressTxt.getText()).matches()) {
+                if (Regex.getContactPattern().matcher(contactNumberTxt.getText()).matches()) {
+                    if (stName.isEmpty() || stAddress.isEmpty() || value.isEmpty() || contact.isEmpty() || birthday.isEmpty()) {
+                        Notifications.create()
+                                .title("Notification !")
+                                .text("Input Data !!")
+                                .position(Pos.TOP_CENTER)
+                                .showInformation();
 
-        }else{
-            String s=studentDAO.existId(studentIdLbl.getText());
+                    } else {
+                        String s = studentBO.existIdStudent(studentIdLbl.getText());
 
-            if (s != null){
-                boolean isSaved = studentBO.saveStudent(new StudentDTO(studentIdLbl.getText(), studentNameTxt.getText(), StudentAddressTxt.getText(), contactNumberTxt.getText(), birthdatPiker.getValue(), gender.getSelectionModel().getSelectedItem()));
-                if (isSaved) {
-                    studentTableAddData();
+
+                        if (s != null) {
+                            boolean isSaved = studentBO.saveStudent(new StudentDTO(studentIdLbl.getText(), studentNameTxt.getText(), StudentAddressTxt.getText(), contactNumberTxt.getText(), birthdatPiker.getValue(), gender.getSelectionModel().getSelectedItem()));
+                            if (isSaved) {
+                                studentTableAddData();
+                                Notifications.create()
+                                        .title("Notification !")
+                                        .text("Student Saved !!")
+                                        .position(Pos.TOP_CENTER)
+                                        .showInformation();
+                            }
+                        }
+                    }
+                }else {
                     Notifications.create()
                             .title("Notification !")
-                            .text("Student Saved !!")
+                            .text("Student Contact Not Match !!")
                             .position(Pos.TOP_CENTER)
                             .showInformation();
-
                 }
+                }else{
+                Notifications.create()
+                        .title("Notification !")
+                        .text("Student Address Not Match !!")
+                        .position(Pos.TOP_CENTER)
+                        .showInformation();
             }
+        }else{
+            Notifications.create()
+                    .title("Notification !")
+                    .text("Student Name Not Match !!")
+                    .position(Pos.TOP_CENTER)
+                    .showInformation();
         }
 
+    }
 
-        }
+
+
+
 
     @FXML
     void updateOnAction(ActionEvent event) {
@@ -139,22 +174,46 @@ public class StudentFormController implements Initializable {
         String birthday = String.valueOf(birthdatPiker.getValue());
 
 
-        if (stName.isEmpty() || stAddress.isEmpty() || value.isEmpty() || contact.isEmpty() || birthday.isEmpty()){
-            Notifications.create()
-                    .title("Notification !")
-                    .text("Input Data !!")
-                    .position(Pos.TOP_CENTER)
-                    .showInformation();
+        if (Regex.getNamePattern().matcher(studentNameTxt.getText()).matches()) {
+            if (Regex.getAddressPattern().matcher(StudentAddressTxt.getText()).matches()) {
+                if (Regex.getContactPattern().matcher(contactNumberTxt.getText()).matches()) {
+                    if (stName.isEmpty() || stAddress.isEmpty() || value.isEmpty() || contact.isEmpty() || birthday.isEmpty()) {
+                        Notifications.create()
+                                .title("Notification !")
+                                .text("Input Data !!")
+                                .position(Pos.TOP_CENTER)
+                                .showInformation();
 
-        }else{
-            boolean isUpdate = studentBO.updateStudent(new StudentDTO(studentIdLbl.getText(), studentNameTxt.getText(), StudentAddressTxt.getText(), contactNumberTxt.getText(), birthdatPiker.getValue(), gender.getSelectionModel().getSelectedItem()));
-            if (isUpdate) {
+                    } else {
+                        boolean isUpdate = studentBO.updateStudent(new StudentDTO(studentIdLbl.getText(), studentNameTxt.getText(), StudentAddressTxt.getText(), contactNumberTxt.getText(), birthdatPiker.getValue(), gender.getSelectionModel().getSelectedItem()));
+                        if (isUpdate) {
+                            Notifications.create()
+                                    .title("Notification !")
+                                    .text("Student Updated !!")
+                                    .position(Pos.TOP_CENTER)
+                                    .showInformation();
+                        }
+                    }
+                }else{
+                    Notifications.create()
+                            .title("Notification !")
+                            .text("Student Contact Not Match!!")
+                            .position(Pos.TOP_CENTER)
+                            .showInformation();
+                }
+            } else{
                 Notifications.create()
                         .title("Notification !")
-                        .text("Student Updated !!")
+                        .text("Student Address Not Match!!")
                         .position(Pos.TOP_CENTER)
                         .showInformation();
             }
+        }else{
+            Notifications.create()
+                    .title("Notification !")
+                    .text("Student Name Not Match !!")
+                    .position(Pos.TOP_CENTER)
+                    .showInformation();
         }
 
     }

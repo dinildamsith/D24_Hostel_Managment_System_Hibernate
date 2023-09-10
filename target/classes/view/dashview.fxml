@@ -29,7 +29,7 @@
             </Label>
             <ImageView fitHeight="95.0" fitWidth="95.0" layoutX="210.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../A%20GDSE%202/Icons/50%20x%2050%20Icons/icons8-customers-96.png" />
+                  <Image url="@../assets/customerC.png" />
                </image>
             </ImageView>
          </children>
@@ -48,7 +48,7 @@
             </Label>
             <ImageView fitHeight="95.0" fitWidth="95.0" layoutX="210.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../A%20GDSE%202/Icons/50%20x%2050%20Icons/roommate.png" />
+                  <Image url="@../assets/roommate.png" />
                </image>
             </ImageView>
          </children>
@@ -67,7 +67,7 @@
             </Label>
             <ImageView fitHeight="82.0" fitWidth="82.0" layoutX="223.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../A%20GDSE%202/Icons/50%20x%2050%20Icons/icons8-reservation-50.png" />
+                  <Image url="@../assets/reservationS.png" />
                </image>
             </ImageView>
          </children>

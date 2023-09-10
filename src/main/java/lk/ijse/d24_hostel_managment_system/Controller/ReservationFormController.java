@@ -9,6 +9,12 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import lk.ijse.d24_hostel_managment_system.bo.BOFactory;
+import lk.ijse.d24_hostel_managment_system.bo.custom.ReservationBO;
+import lk.ijse.d24_hostel_managment_system.bo.custom.impl.ReservationBoImpl;
+import lk.ijse.d24_hostel_managment_system.dao.DAOFactory;
+import lk.ijse.d24_hostel_managment_system.dao.custom.RoomDAO;
+import lk.ijse.d24_hostel_managment_system.dao.custom.StudentDAO;
 import lk.ijse.d24_hostel_managment_system.dao.custom.impl.ReservationDAOImpl;
 import lk.ijse.d24_hostel_managment_system.dao.custom.impl.RoomDAOImpl;
 import lk.ijse.d24_hostel_managment_system.dao.custom.impl.StudentDAOImpl;
@@ -85,18 +91,23 @@ public class ReservationFormController implements Initializable {
 
 
 
-    StudentDAOImpl studentDAO = new StudentDAOImpl();
+//    StudentDAOImpl studentDAO = new StudentDAOImpl();
+//    ReservationBoImpl reservationBo = new ReservationBoImpl();
+
+    ReservationBO reservationBO = (ReservationBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.RESERVATION);
+    StudentDAO studentDAO = (StudentDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.STUDENT);
     RoomDAOImpl roomDAO = new RoomDAOImpl();
-    ReservationDAOImpl reservationDAO = new ReservationDAOImpl();
+
+
 
     @FXML
     void deleteBtnOnAction(ActionEvent event) {
-//        String roomTypeId = roomTypeIdComboBox.getSelectionModel().getSelectedItem();
-//        RoomDTO roomDTO = roomDAO.search(roomTypeId);
+        String roomTypeId = roomTypeIdComboBox.getSelectionModel().getSelectedItem();
+        RoomDTO roomDTO = roomDAO.search(roomTypeId);
 //
-//        Session session = FactoryConfiguration.getInstance().getSession();
-//        Transaction transaction = session.beginTransaction();
-//        Room roomUpdate = session.get(Room.class,roomDTO.getRoom_Type_Id());
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        Room roomUpdate = session.get(Room.class,roomDTO.getRoom_Type_Id());
         Student studentDTO = new Student();
         studentDTO.setStudent_Id(studentIdComboBox.getValue());
 
@@ -114,8 +125,19 @@ public class ReservationFormController implements Initializable {
         reservationDTO.setStudent(studentDTO);
         reservationDTO.setStatus(statusComboBox.getValue());
 
-        boolean iSDelete =  reservationDAO.delete(reservationDTO);
+
+        String x = roomDTO.getRooms_Qty();
+        System.out.println(x);
+        int intTypeQty = Integer.parseInt(x);
+        System.out.println(intTypeQty);
+        String updatedRoomQty = String.valueOf(intTypeQty+1);
+        System.out.println(updatedRoomQty);
+        roomUpdate.setRooms_Qty(updatedRoomQty);
+
+        boolean iSDelete =  reservationBO.reservationDelete(reservationDTO);
         if (iSDelete){
+            session.persist(roomUpdate);
+            transaction.commit();
             Notifications.create()
                     .title("Notification!")
                     .text("Reservation Deleted!!")
@@ -162,7 +184,7 @@ public class ReservationFormController implements Initializable {
        roomUpdate.setRooms_Qty(updatedRoomQty);
 
 
-        boolean save = reservationDAO.save(reservationDTO);
+        boolean save = reservationBO.reservationSave(reservationDTO);
         if (save){
             session.persist(roomUpdate);
             transaction.commit();
@@ -200,11 +222,11 @@ public class ReservationFormController implements Initializable {
         reservationDTO.setStudent(studentDTO);
         reservationDTO.setStatus(statusComboBox.getValue());
 
-        boolean iSUpdate =  reservationDAO.update(reservationDTO);
+        boolean iSUpdate =  reservationBO.reservationUpdate(reservationDTO);
         if (iSUpdate){
             Notifications.create()
                     .title("Notification!")
-                    .text("Reservation Updated!!")
+                    .text("Reservation Update!!")
                     .position(Pos.TOP_CENTER)
                     .showInformation();
 
@@ -257,7 +279,7 @@ public class ReservationFormController implements Initializable {
     }
 
     private void setReservationTableData(){
-        ArrayList<Reservation> allReservation  = reservationDAO.getAll();
+        ArrayList<Reservation> allReservation  = reservationBO.getAllReservation();
         for (Reservation reservation : allReservation){
             reservationTable.getItems().add(new ReservationDTO(reservation.getReservation_Id(),reservation.getStudent(),reservation.getRoom(),reservation.getRoom_Type(),reservation.getDate(),reservation.getStatus()));
         }
@@ -274,7 +296,7 @@ public class ReservationFormController implements Initializable {
         tableListener();
 
         //Reservation id Set
-        Object newId = reservationDAO.generateNewID();
+        Object newId = reservationBO.generateNewReservationID();
         reservationIdLbl.setText((String) newId);
 
 

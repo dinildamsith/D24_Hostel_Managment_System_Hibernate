@@ -49,7 +49,7 @@
       </Label>
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="724.0" layoutY="117.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../A%20GDSE%202/Icons/50%20x%2050%20Icons/user.png" />
+            <Image url="@../assets/user.png" />
          </image>
       </ImageView>
    </children>

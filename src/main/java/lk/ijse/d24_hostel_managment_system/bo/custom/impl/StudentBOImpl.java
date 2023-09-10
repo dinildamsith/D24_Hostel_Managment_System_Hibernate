@@ -2,6 +2,8 @@ package lk.ijse.d24_hostel_managment_system.bo.custom.impl;
 
 import javafx.collections.ObservableList;
 import lk.ijse.d24_hostel_managment_system.bo.custom.StudentBO;
+import lk.ijse.d24_hostel_managment_system.dao.DAOFactory;
+import lk.ijse.d24_hostel_managment_system.dao.custom.StudentDAO;
 import lk.ijse.d24_hostel_managment_system.dao.custom.impl.StudentDAOImpl;
 import lk.ijse.d24_hostel_managment_system.dto.StudentDTO;
 import lk.ijse.d24_hostel_managment_system.entity.Student;
@@ -10,7 +12,9 @@ import java.util.ArrayList;
 
 public class StudentBOImpl implements StudentBO<StudentDTO> {
 
-    StudentDAOImpl studentDAO = new StudentDAOImpl();
+
+    StudentDAO studentDAO = (StudentDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.STUDENT);
+//    StudentDAOImpl studentDAO = new StudentDAOImpl();
     @Override
     public ArrayList<StudentDTO> getAll() {
         return null;
@@ -36,7 +40,8 @@ public class StudentBOImpl implements StudentBO<StudentDTO> {
 
     @Override
     public String existIdStudent(String id) {
-        return null;
+       return studentDAO.existId(id);
+
     }
 
     @Override
@@ -46,6 +51,7 @@ public class StudentBOImpl implements StudentBO<StudentDTO> {
 
     @Override
     public Object generateNewIDStudent() {
-        return null;
+         return studentDAO.generateNewID();
+
     }
 }

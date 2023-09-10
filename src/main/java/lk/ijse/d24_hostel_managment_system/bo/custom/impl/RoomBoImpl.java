@@ -2,6 +2,8 @@ package lk.ijse.d24_hostel_managment_system.bo.custom.impl;
 
 import javafx.collections.ObservableList;
 import lk.ijse.d24_hostel_managment_system.bo.custom.RoomBO;
+import lk.ijse.d24_hostel_managment_system.dao.DAOFactory;
+import lk.ijse.d24_hostel_managment_system.dao.custom.RoomDAO;
 import lk.ijse.d24_hostel_managment_system.dao.custom.impl.RoomDAOImpl;
 import lk.ijse.d24_hostel_managment_system.dto.RoomDTO;
 import lk.ijse.d24_hostel_managment_system.entity.Room;
@@ -9,7 +11,9 @@ import lk.ijse.d24_hostel_managment_system.entity.Room;
 import java.util.ArrayList;
 
 public class RoomBoImpl implements RoomBO<RoomDTO> {
-    RoomDAOImpl roomDAO = new RoomDAOImpl();
+
+    RoomDAO roomDAO = (RoomDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.ROOM);
+//    RoomDAOImpl roomDAO = new RoomDAOImpl();
     @Override
     public ArrayList<RoomDTO> getAllRooms() {
 
@@ -48,6 +52,7 @@ public class RoomBoImpl implements RoomBO<RoomDTO> {
 
     @Override
     public ObservableList searchRoom(String id) {
+
         return null;
     }
 

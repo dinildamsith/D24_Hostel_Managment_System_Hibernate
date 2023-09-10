@@ -26,11 +26,11 @@
             <Font name="Arial Black" size="22.0" />
          </font>
       </Label>
-      <JFXButton fx:id="updateBtn" layoutX="178.0" layoutY="469.0" onAction="#updateOnAction" text="Update">
+      <JFXButton fx:id="updateBtn" layoutX="178.0" layoutY="469.0" onAction="#updateOnAction" stylesheets="@../css/style.css" text="Update">
          <graphic>
             <ImageView fitHeight="53.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../A%20GDSE%202/Icons/50%20x%2050%20Icons/updated.png" />
+                  <Image url="@../assets/updated.png" />
                </image>
             </ImageView>
          </graphic>

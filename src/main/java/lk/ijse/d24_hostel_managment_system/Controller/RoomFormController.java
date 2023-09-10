@@ -9,11 +9,15 @@ import javafx.geometry.Pos;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import lk.ijse.d24_hostel_managment_system.bo.BOFactory;
+import lk.ijse.d24_hostel_managment_system.bo.custom.RoomBO;
 import lk.ijse.d24_hostel_managment_system.bo.custom.impl.RoomBoImpl;
 import lk.ijse.d24_hostel_managment_system.dao.custom.impl.RoomDAOImpl;
 import lk.ijse.d24_hostel_managment_system.dto.RoomDTO;
 import lk.ijse.d24_hostel_managment_system.entity.Room;
+import lk.ijse.d24_hostel_managment_system.utill.Regex;
 import org.controlsfx.control.Notifications;
+import org.hibernate.HibernateException;
 
 import java.awt.*;
 import java.net.URL;
@@ -63,7 +67,8 @@ public class RoomFormController implements Initializable {
     public Label roomLbl;
 
 
-    RoomBoImpl roomBo = new RoomBoImpl();
+    RoomBO roomBO = (RoomBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.ROOM);
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -81,7 +86,7 @@ public class RoomFormController implements Initializable {
     }
 
     private void roomTableAddData(){
-        ArrayList<RoomDTO> all = roomBo.getAllRooms();
+        ArrayList<RoomDTO> all =roomBO.getAllRooms();
         for (RoomDTO room : all){
             roomTable.getItems().add(new RoomDTO(room.getRoom_Type_Id(),room.getRoom_Type(),room.getKey_Money(),room.getRooms_Qty()));
         }
@@ -108,31 +113,64 @@ public class RoomFormController implements Initializable {
         String keyMoney = keyMoneyTxt.getText();
         String qty = roomQtyTxt.getText();
 
-        if (roomId.isEmpty() || roomType.isEmpty() || keyMoney.isEmpty() || qty.isEmpty()){
-            Notifications.create()
-                    .title("Notification!")
-                    .text("Input Data!!")
-                    .position(Pos.TOP_CENTER)
-                    .showInformation();
-        }else{
-            boolean roomSaved = roomBo.saveRoom(new RoomDTO(roomTypeIdTxt.getText(), roomTypeTxt.getText(), keyMoneyTxt.getText(), roomQtyTxt.getText()));
-            if (roomSaved) {
+    if (Regex.getDoublePattern().matcher(keyMoneyTxt.getText()).matches()){
+        if (Regex.getRoomIdPattern().matcher(roomTypeIdTxt.getText()).matches()){
+            if (Regex.getIntPattern().matcher(roomQtyTxt.getText()).matches()) {
+                if (roomId.isEmpty() || roomType.isEmpty() || keyMoney.isEmpty() || qty.isEmpty()) {
+
+
+                    Notifications.create()
+                            .title("Notification!")
+                            .text("Input Data!!")
+                            .position(Pos.TOP_CENTER)
+                            .showInformation();
+                } else {
+
+                }
+                try {
+                    boolean roomSaved = roomBO.saveRoom(new RoomDTO(roomTypeIdTxt.getText(), roomTypeTxt.getText(), keyMoneyTxt.getText(), roomQtyTxt.getText()));
+                    if (roomSaved) {
+                        Notifications.create()
+                                .title("Notification!")
+                                .text("Room Saved!!")
+                                .position(Pos.TOP_CENTER)
+                                .showInformation();
+                    }
+                } catch (HibernateException e) {
+                    Notifications.create()
+                            .title("Notification!")
+                            .text("This Id Have Room ")
+                            .position(Pos.TOP_CENTER)
+                            .showInformation();
+                }
+            }  else{
                 Notifications.create()
                         .title("Notification!")
-                        .text("Room Saved!!")
+                        .text("This Room Qty Not Match ")
                         .position(Pos.TOP_CENTER)
                         .showInformation();
-            }
         }
 
-
-
+    }else{
+            Notifications.create()
+                    .title("Notification!")
+                    .text("This Room Id Not Match ")
+                    .position(Pos.TOP_CENTER)
+                    .showInformation();
+        }
+    }else{
+        Notifications.create()
+                .title("Notification!")
+                .text("This Room KeyMoney Not Match ")
+                .position(Pos.TOP_CENTER)
+                .showInformation();
+    }
 
     }
 
     @FXML
     void deleteBtnOnAction(ActionEvent event) {
-        boolean isDeleted = roomBo.deleteRoom(new RoomDTO(roomTypeIdTxt.getText(),roomTypeTxt.getText(),keyMoneyTxt.getText(),roomQtyTxt.getText()));
+        boolean isDeleted = roomBO.deleteRoom(new RoomDTO(roomTypeIdTxt.getText(),roomTypeTxt.getText(),keyMoneyTxt.getText(),roomQtyTxt.getText()));
         if (isDeleted){
             Notifications.create()
                     .title("Notification !")
@@ -150,25 +188,49 @@ public class RoomFormController implements Initializable {
         String keyMoney = keyMoneyTxt.getText();
         String qty = roomQtyTxt.getText();
 
-        if (roomId.isEmpty() || roomType.isEmpty() || keyMoney.isEmpty() || qty.isEmpty()){
-            Notifications.create()
-                    .title("Notification!")
-                    .text("Input Data!!")
-                    .position(Pos.TOP_CENTER)
-                    .showInformation();
-        }else{
-            boolean isUpdate = roomBo.updateRoom(new RoomDTO(roomTypeIdTxt.getText(),roomTypeTxt.getText(),keyMoneyTxt.getText(),roomQtyTxt.getText()));
-            if (isUpdate){
+        if (Regex.getRoomIdPattern().matcher(roomTypeIdTxt.getText()).matches()){
+        if (Regex.getDoublePattern().matcher(keyMoneyTxt.getText()).matches()){
+            if (Regex.getIntPattern().matcher(roomQtyTxt.getText()).matches()) {
+
+                if (roomId.isEmpty() || roomType.isEmpty() || keyMoney.isEmpty() || qty.isEmpty()) {
+                    Notifications.create()
+                            .title("Notification!")
+                            .text("Input Data!!")
+                            .position(Pos.TOP_CENTER)
+                            .showInformation();
+                } else {
+                    boolean isUpdate = roomBO.updateRoom(new RoomDTO(roomTypeIdTxt.getText(), roomTypeTxt.getText(), keyMoneyTxt.getText(), roomQtyTxt.getText()));
+                    if (isUpdate) {
+                        Notifications.create()
+                                .title("Notification !")
+                                .text("Room Updated!!")
+                                .position(Pos.TOP_CENTER)
+                                .showInformation();
+
+                    }
+                }
+            }  else{
                 Notifications.create()
                         .title("Notification !")
-                        .text("Room Updated!!")
+                        .text("Room Qty Not Match!!")
                         .position(Pos.TOP_CENTER)
                         .showInformation();
-
-              }
-          }
-
+            }
+        }else{
+            Notifications.create()
+                    .title("Notification !")
+                    .text("Room Key Money Not Match!!")
+                    .position(Pos.TOP_CENTER)
+                    .showInformation();
         }
+    }else{
+            Notifications.create()
+                    .title("Notification !")
+                    .text("Room Id Not Match!!")
+                    .position(Pos.TOP_CENTER)
+                    .showInformation();
+        }
+    }
 
     }
 

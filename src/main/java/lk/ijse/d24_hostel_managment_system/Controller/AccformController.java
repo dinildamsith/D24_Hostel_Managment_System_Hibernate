@@ -4,6 +4,8 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
+import lk.ijse.d24_hostel_managment_system.dao.DAOFactory;
+import lk.ijse.d24_hostel_managment_system.dao.custom.UserDAO;
 import lk.ijse.d24_hostel_managment_system.dao.custom.impl.UserDAOImpl;
 import lk.ijse.d24_hostel_managment_system.dto.UserDTO;
 import lk.ijse.d24_hostel_managment_system.entity.User;
@@ -24,7 +26,8 @@ public class AccformController {
 
 
 //    updateAccDAOImpl updateAccDAO = new updateAccDAOImpl();
-    UserDAOImpl userDAO = new UserDAOImpl();
+//    UserDAOImpl userDAO = new UserDAOImpl();
+    UserDAO userDAO = (UserDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.USER);
 
     public void updateOnAction(javafx.event.ActionEvent actionEvent) {
         String userName = userNameTxt.getText();
